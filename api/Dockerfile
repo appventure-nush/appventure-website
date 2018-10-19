@@ -1,4 +1,4 @@
-FROM golang:1.9-alpine as build
+FROM golang:1.11-alpine as build
 
 WORKDIR /go/src/github.com/appventure-nush/appventure-website/api
 RUN apk add --no-cache git=2.18.0-r0

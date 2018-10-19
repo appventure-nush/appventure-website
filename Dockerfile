@@ -7,7 +7,7 @@ RUN yarn install
 RUN node ./node_modules/grunt-cli/bin/grunt
 
 
-FROM golang:1.9-alpine as build
+FROM golang:1.11-alpine as build
 
 WORKDIR /go/src/github.com/appventure-nush/appventure-website
 RUN apk add --no-cache git=2.18.0-r0
