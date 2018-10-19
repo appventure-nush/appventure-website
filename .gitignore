@@ -10,7 +10,6 @@ appventure-website
 /api/.gitattributes
 /api/.gitignore
 /api/*.md
-/api/Dockerfile
 /api/LICENSE
 /api/addons
 /api/*.db
