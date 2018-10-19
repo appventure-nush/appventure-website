@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+    <title>
+        {{ if .Title }}
+            {{ .Title }} - AppVenture
+        {{ else if .Item }}
+            {{ .Item.Name }} - AppVenture
+        {{ else }}
+            AppVenture
+        {{ end }}
+    </title>
+	<link rel="stylesheet" href="/assets/icons/icomoon/style.css" />
+	<link rel="stylesheet" href="/assets/css/style.css" />
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:500,700" />
+	<meta name="viewport" content="width=device-width" />
+	<meta name="author" content="NUS High School of Math and Scienceuu" />
+	<meta name="theme-color" content="#009A90" />
+	<link rel="shortcut icon" href="/assets/icons/favicon.png" type="image/png" />
+	<link rel="icon" href="/assets/icons/favicon.png" type="image/png" />
+	<!--
+		"Together we can change the world" - tt4158110
+	-->
+</head>
+<body>
+{{ template "nav.html" . }}

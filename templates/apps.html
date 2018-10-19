@@ -1,0 +1,32 @@
+{{ template "header.html" . }}
+
+<main>
+    {{ template "filterbar.html" }}
+    <ul class="gallery">
+        {{ range .Items }}
+        <a href="/apps/{{ unslug .Slug }}">
+            <li class="gallery-item"
+                data-filterable="tags"
+				data-tags="{{ range .Platforms }}{{ . }} {{ end }}{{ range .Year }}year-{{ . }} {{ end }}{{ .Type }}">
+				<img class="icon" src="{{ size "128" .Icon }}" />
+                <div class="text">
+                    <h6>{{ .Name }}</h6>
+					<p>{{ andify .Authors }}</p>
+                </div>
+                <div class="cover">
+					<p>{{ donotescape .Description }}</p>
+                </div>	
+            </li>
+        </a>
+        {{ end }}
+    </ul>
+</main>
+<script src="/assets/js/filter.js"></script>
+<script src="/assets/js/filterbar.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+	var fb = new FilterBar(".filterbar", ".gallery");
+});
+</script>
+
+{{ template "footer.html" . }}

@@ -1,0 +1,74 @@
+$theme-color: #009A90;
+$theme-dark-color: mix($theme-color, black, 90%);
+$theme-secondary-color: #323B45; // #FF6719
+$text-color: $theme-secondary-color;
+$background-color: white;
+
+$nav-background-fade: 100%; // consider setting to 90% after fixing #15
+
+$palette: (
+	background: $background-color,
+	text: $text-color,
+	text-blur: $theme-secondary-color, //mix($text-color, $background-color, $text-blur),
+	seprator: mix($theme-secondary-color, $background-color, 33.3%), //$theme-secondary-color, //mix($text-color, $background-color, 25%),
+	seprator-invert: mix(#fff, $theme-color, 33.3%),
+	brand: $text-color,
+	brand-invert: #fff,
+	nav-background: mix($background-color, transparent, $nav-background-fade),
+	nav-text: $theme-secondary-color,
+	nav-invert-background: mix($theme-color, transparent, $nav-background-fade),
+	nav-invert-text: #fff,
+	footer-background: $theme-secondary-color,
+	footer-text: #fff,
+	jumbo-background: $theme-color,
+	jumbo-text: #fff,
+	gallery-cover-background: mix($theme-color, transparent, 90%),
+	gallery-cover-text: #fff,
+	blockquote-bar: $theme-color,
+	highlight-background: $theme-color,
+	highlight-text: #fff,
+	carousel-frame-background: #000,
+	popup-fade: mix(#000, transparent, 75%),
+	popup-background: $background-color,
+);
+
+@function palette($name: transparent) {
+	@return map-get($palette, $name);
+}
+
+$link-palette: (
+	default: (
+		link: $theme-color,
+		hover: $text-color,
+		active: $text-color,
+	),
+	flip: (
+		link: $text-color,
+		hover: $theme-color,
+		active: $theme-color,
+	),
+	invert: (
+		link: mix($background-color, transparent, 100%),
+		hover: mix($background-color, transparent, 66.7%),
+		active: mix($background-color, transparent, 66.7%),
+	),
+	nav: (
+		link: $theme-color,
+		hover: palette(nav-text),
+		active: palette(nav-text),
+	),
+	nav-invert: (
+		link: mix(palette(nav-invert-text), palette(nav-invert-background), 100%),
+		hover: mix(palette(nav-invert-text), palette(nav-invert-background), 66.7%),
+		active: mix(palette(nav-invert-text), palette(nav-invert-background), 66.7%),
+	),
+	footer: (
+		link: mix(palette(footer-text), palette(footer-background), 100%),
+		hover: mix(palette(footer-text), palette(footer-background), 66.7%),
+		active: mix(palette(footer-text), palette(footer-background), 66.7%),
+	),
+);
+
+@function link-palette($type: default, $role: link) {
+	@return map-get(map-get($link-palette, $type), $role);
+}

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="300" viewBox="0 0 520 300">
+	<!-- traced in inkscape, cleaned up with svgo and hand-edited by your's truly 😘 -->
+	<defs>
+		<linearGradient id="a" x1="258" y1="292" x2="258" y2="300" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#a0a0a0"/>
+			<stop offset="1" stop-color="#4a4a4a"/>
+		</linearGradient>
+		<linearGradient id="b">
+			<stop offset="0" stop-color="#6a6a6a"/>
+			<stop offset="1" stop-opacity="0"/>
+		</linearGradient>
+	</defs>
+	<rect width="422" height="292" x="49" y="3" ry="16" fill="#bababa"/>
+	<rect width="416" height="288" x="52" y="6" ry="14" fill="#000000"/>
+	<path d="M2 292v1s19 6 48 7h421c31 0 47-7 47-7v-1z" fill="url(#a)"/>
+	<circle r="2" cy="16" cx="260" fill="#333333"/>
+	<path fill="#bababa" d="M2 290h516v3H2z"/>
+	<path transform="scale(-1)" fill="url(#b)" d="M-310-293h7v3h-7z"/>
+	<path fill="url(#b)" d="M210 290h7v3h-7z"/>
+	<path fill="#a0a0a0" d="M65 26h390v244H65z"/>
+</svg>

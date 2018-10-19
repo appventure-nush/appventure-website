@@ -1,0 +1,12 @@
+{
+  "name": "appventure",
+  "version": "0.1.0",
+  "devDependencies": {
+    "grunt-cli": "~1.2.0",
+    "grunt": "~1.0.1",
+    "grunt-sass": "~2.0.0",
+    "grunt-contrib-watch": "~1.0.0",
+    "grunt-postcss": "^0.8.0",
+    "autoprefixer": "~6.4.1"
+  }
+}

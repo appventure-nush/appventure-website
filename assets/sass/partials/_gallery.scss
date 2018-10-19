@@ -1,0 +1,81 @@
+$gallery-spacing: 1rem;
+
+.gallery {
+    margin: -$gallery-spacing;
+    @include paragraphing(gallery);
+    display: block;
+    font-size: 0;
+
+    .gallery-item {
+        font-size: $font-size-base;
+        width: calc(50% - #{$gallery-spacing} * 2); // p.s. this is a hack
+        margin: $gallery-spacing;
+        overflow: hidden;
+        display: inline-block;
+        position: relative;
+
+        &.featured {
+            width: calc(100% - #{$gallery-spacing} * 2);	
+            .cover {
+                @include font-size(medium);
+            }
+        }
+
+        &.unmatched {
+            display: none;
+        }
+        &.matched {
+            display: inline-block;
+        }
+
+        &:after {
+            content: "";
+            padding-top: 20%;
+            display: block;
+        }
+    }
+
+    .cover {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        border-radius: 8px;
+        p {
+            height: 100%;
+            margin: 0;
+            padding: 0.5em 1em;
+        }
+        background-color: palette(gallery-cover-background);
+        color: palette(gallery-cover-text);
+        opacity: 0;
+        transition: 0.2s opacity;
+        &:hover {
+            opacity: 1;
+            color: #fff;
+        }
+    }
+
+    a:focus .cover {
+        @extend .cover:hover;
+    }
+
+    .icon {
+        object-fit: cover;
+        width: 20%;
+        border-radius: 8px;
+        position: absolute;
+        height: 100%;
+        border: 1px solid #ddd;
+    }
+
+    .text {
+        color: #323B45;
+        width: 80%;
+        height: 100%;
+        position: absolute;
+        left: 22%;
+        p, h6 {
+            margin: 0; // TODO: remove this line
+        }
+    }
+}

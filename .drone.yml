@@ -1,0 +1,20 @@
+pipeline:
+  docker-api:
+    group: docker
+    image: plugins/docker
+    pull: true
+    registry: registry:5000
+    insecure: true
+    repo: registry:5000/appventure-api
+    context: ./api
+    tags:
+      - "${DRONE_BRANCH}"
+  docker-website:
+    group: docker
+    image: plugins/docker
+    pull: true
+    registry: registry:5000
+    insecure: true
+    repo: registry:5000/appventure-website
+    tags:
+      - "${DRONE_BRANCH}"

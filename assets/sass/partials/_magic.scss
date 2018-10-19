@@ -1,0 +1,12 @@
+@mixin border-bottom-hairline($color) {
+	border-bottom: 1px solid $color;
+
+	@media only screen and (-webkit-min-device-pixel-ratio: 2),
+		only screen and (min-resolution: 190dpi) {
+		border-bottom-width: 0.5px;	
+	}
+	@media screen and (-webkit-min-device-pixel-ratio: 4),
+		only screen and (min-resolution: 380dpi) {
+		border-bottom-width: 0.25px;	
+	}
+}

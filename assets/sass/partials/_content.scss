@@ -1,0 +1,65 @@
+main {
+	padding: 0 2rem;
+	@include paragraphing(main);
+	min-height: 50vh;
+
+	.apps {
+		text-align: center;
+	}
+
+	.authors {
+		//@include font-size(medium);
+		@include font-type(authors);
+	}
+
+	.achievement-header {
+		margin-bottom: 0;
+	}
+
+	.achievements {
+		margin-top: 0;
+		padding-left: 1em;
+		@include font-size(subtext);
+
+		&.plain {
+			padding-left: 0;
+			list-style: none;
+		}
+	}
+
+	.content {
+		ul, ol {
+			padding-left: 1em;
+		}
+	}
+	
+	.pull-right {
+		float: right;
+	}
+	.pull-left {
+		float: left;
+	}
+	
+	.clearfix {
+		clear: both;
+	}
+
+	.w50 {
+		width: 50%;
+	}
+	.w30 {
+		width: 30%;
+	}
+	.w25 {
+		width: 25%;
+	}
+	.w23 {
+		width: 23%;
+	}
+	.w20 {
+		width: 20%;
+	}
+	.w15 {
+		width: 15%;
+	}
+}

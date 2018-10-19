@@ -1,0 +1,12 @@
+{{ template "header.html" . }}
+
+<main class="page">
+    {{ if eq .Item 404 }}
+    <h1>Page Not Found</h1>
+    <p>Try going back? </p>
+	{{ else }}
+    {{ .Item }}
+    {{ end }}
+</main>
+
+{{ template "footer.html" . }}

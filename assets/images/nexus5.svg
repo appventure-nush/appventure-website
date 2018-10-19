@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="520" viewBox="0 0 300 520">
+	<!-- traced in inkscape, cleaned up with svgo and hand-edited by your's truly 😘 -->
+	<rect width="248" height="508" x="26" y="6" ry="32" fill="#bababa"/>
+	<rect ry="31.5" y="8" x="28" height="504" width="244"/>
+	<path d="M36 58h228v405H36z" fill="#a0a0a0"/>
+	<rect width="90" height="8" x="105" y="28" ry="4" fill="#333"/>
+	<circle cx="78" cy="32" r="4" fill="#333"/>
+	<rect width="90" height="8" x="105" y="489" ry="4" fill="#333"/>
+</svg>

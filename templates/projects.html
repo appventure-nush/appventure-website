@@ -1,0 +1,33 @@
+{{ template "header.html" . }}
+
+<main>
+    {{ template "filterbar.html" }}
+    <ul class="gallery">
+        {{ range .Items }}
+        <a href="/projects/{{ .Name }}">
+            <li class="gallery-item"
+                data-filterable="tags"
+                data-tags="{{ .Tags }}">
+                <div class="text">
+                    <h6>{{ .Title }}</h6>
+                    {{/*
+                    <p>{% for author in post.authors %}{% if forloop.first == true %}{{ author }}{% elsif forloop.last == false %}, {{ author }}{% elsif forloop.length != 1 %} and {{ author }}{% else %}{{ author }}{% endif %}{% endfor %}</p>
+                    */}}
+                </div>
+                <div class="cover">
+                    <p>{{ .Description }}</p>
+                </div>	
+            </li>
+        </a>
+        {{ end }}
+    </ul>
+</main>
+<script src="/assets/js/filter.js"></script>
+<script src="/assets/js/filterbar.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+	var fb = new FilterBar(".filterbar", ".gallery");
+});
+</script>
+
+{{ template "footer.html" . }}

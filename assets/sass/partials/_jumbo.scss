@@ -1,0 +1,40 @@
+.jumbo {
+	padding: 4rem;
+	color: palette(jumbo-text);
+
+	position: relative;
+
+	//.mask,
+	img, svg {
+		position: absolute;
+		bottom: 0%;
+		right: 0;
+		height: 45rem;
+		margin-right: -2rem;
+		bottom: 2%;
+	}
+
+	//.mask { // Fade image on the left. 
+	//	background: linear-gradient(90deg, $theme-color, rgba($theme-color, 0.5), rgba($theme-color, 0), rgba($theme-color, 0));
+	//}
+
+	.text {
+		position: relative;
+		left: 0;
+		top: 0;
+		width: 60%;
+		padding: 4rem 0 24rem 0;
+		margin: 0 2rem;
+		@include font-size(medium);
+		z-index: 2;
+		.links {
+			margin: 0.5em 0;
+		}
+	}
+}
+
+.jumbo-wrapper {
+	background-color: palette(jumbo-background);
+	overflow: hidden;
+}
+

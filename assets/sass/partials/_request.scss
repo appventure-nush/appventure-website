@@ -1,0 +1,40 @@
+// TODO: replace with better theme-wide form styles
+.request {
+	input, textarea, select {
+		font: inherit;
+	}
+
+    input:not([type=submit]),
+	textarea {
+		appearance: none;
+		background: none;
+		color: inherit;
+		//border: 2px solid $theme-color;
+		border: 2px solid mix($theme-secondary-color, transparent, 66.6666%);
+		border-radius: 0.5em;
+		line-height: 1.2;
+		padding: 0.333333em 0.666666em; // !important;
+		margin: 0.222222em 0;
+		display: inline-block;
+		transition: 0.2s color, 0.2s background-color, 0.2s border-color;
+
+		width: 100%;
+		outline: none;
+
+		margin-bottom: 1em;
+    }
+	
+	textarea {
+		resize: vertical;
+	}
+	
+    input:focus,
+	textarea:focus {
+        border-color: $theme-color;
+    }
+
+    .btn {
+        width: 100%;
+		border-radius: 0.5em;
+    }
+}

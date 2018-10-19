@@ -1,0 +1,32 @@
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+
+html {
+	overflow-x: hidden;
+	font-size: $base-unit;
+	@include font-family();
+	@include font-type();
+    -moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-size-adjust: 100%;
+	color: palette(text);
+	background-color: palette(footer-background);
+	color-profile: sRGB;
+	-webkit-tap-highlight-color: rgba(palette(highlight-background), 0.667);
+}
+
+::selection {
+	background: palette(highlight-background);
+	color: palette(highlight-text);
+}
+::-moz-selection {
+	background: palette(highlight-background);
+	color: palette(highlight-text);
+}
+
+body {
+	font-size: $font-size-base;
+	background-color: palette(background);
+	overflow-x: hidden;
+}
