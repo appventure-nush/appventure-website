@@ -11,7 +11,6 @@ appventure-website
 /api/.gitignore
 /api/*.md
 /api/LICENSE
-/api/addons
 /api/*.db
 /api/deployment
 /api/docs
