@@ -6,6 +6,7 @@ pipeline:
     registry: registry:5000
     insecure: true
     repo: registry:5000/appventure-api
+    dockerfile: ./api/Dockerfile
     context: ./api
     tags:
       - "${DRONE_BRANCH}"
