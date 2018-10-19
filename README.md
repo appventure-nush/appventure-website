@@ -3,6 +3,8 @@
 
 \[Deployment: [docker-compose.yml](https://github.com/appventure-nush/infrastructure/blob/master/setup-scripts/main-website.yml) | [registry (website)](https://appventure.nushigh.edu.sg/registry/#/appventure-website) | [registry (api)](https://appventure.nushigh.edu.sg/registry/#/appventure-api)\]
 
+> Backstory: The current version of the website uses Jekyll and a submission portal that pushes to Git. However, on our new setup, none of the services should have push access to GitHub, and anyway it is better to move to a proper CMS so that we can add additional sections to the website without Jekyll hackery. Hence, due to my obsession with Go and APIs, here we are.
+
 The AppVenture website is a Go webapp that generates pages out of static [templates](templates/) and JSON data obtained from the API. It also serves the static files in the [assets](assets/) folder.
 
 * `api.go`: A thin wrapper to perform requests to the API
