@@ -7,7 +7,7 @@
         <a href="/apps/{{ unslug .Slug }}">
             <li class="gallery-item"
                 data-filterable="tags"
-				data-tags="{{ range .Platforms }}{{ . }} {{ end }}{{ range .Year }}year-{{ . }} {{ end }}{{ .Type }}">
+				data-tags="{{ range .Platforms }}{{ . }},{{ end }}{{ range .Year }}{{ . }},{{ end }}{{ .Type }}">
 				<img class="icon" src="{{ size "128" .Icon }}" />
                 <div class="text">
                     <h6>{{ .Name }}</h6>

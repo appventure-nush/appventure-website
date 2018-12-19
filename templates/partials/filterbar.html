@@ -1,6 +1,6 @@
 <div class="filterbar">
 	<label>Filter by</label>
-	{{ range .Meh }}
+	{{ range filterbar }}
 	<div class="group">
 		<label>
 			<span>{{ .Title }}</span>
@@ -8,11 +8,11 @@
 			<i class="icon-arrow_drop_up"></i>
 		</label>
 		<ul class="tags">
-			{{ range .Tags }}
-			<li class="tag" data-tag="{{ .Name }}">
+			{{ range $Name, $Title := .Tags }}
+			<li class="tag" data-tag="{{ $Name }}">
 				<i class="icon-check_box"></i>
 				<i class="icon-check_box_outline_blank"></i>
-				<span>{{ .Title }}</span>
+				<span>{{ $Title }}</span>
 			</li>
 			{{ end }}
 		</ul>

@@ -35,5 +35,6 @@ func NewHelpers() template.FuncMap {
 		"size": func(size, url string) string {
 			return "http://localhost:8080" + url
 		},
+		"filterbar": GetFilterbar,
 	}
 }

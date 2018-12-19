@@ -28,6 +28,27 @@ type App struct {
 	Content          string   `json:"content"`
 }
 
+var AppPlatforms = map[string]string{
+	"mobile":  "Mobile",
+	"desktop": "Desktop",
+	"web":     "Web",
+}
+
+var AppYear = map[string]string{
+	"1": "Year 1",
+	"2": "Year 2",
+	"3": "Year 3",
+	"4": "Year 4",
+	"5": "Year 5",
+	"6": "Year 6",
+}
+var AppType = map[string]string{
+	"cs module":   "CS Module",
+	"competition": "Competition",
+	"by request":  "By Request",
+	"personal":    "Personal",
+}
+
 // MarshalEditor writes a buffer of html to edit a App within the CMS
 // and implements editor.Editable
 func (a *App) MarshalEditor() ([]byte, error) {
@@ -44,7 +65,7 @@ func (a *App) MarshalEditor() ([]byte, error) {
 		},
 		editor.Field{
 			View: editor.Richtext("Description", a, map[string]string{
-				"label":       "Description",
+				"label":       "Short Description",
 				"placeholder": "Provide a short description of your app",
 			}),
 		},
@@ -63,45 +84,29 @@ func (a *App) MarshalEditor() ([]byte, error) {
 		},
 		editor.Field{
 			View: editor.Checkbox("Platforms", a, map[string]string{
-				"label": "Platforms",
-			}, map[string]string{
-				"mobile":  "Mobile",
-				"desktop": "Desktop",
-				"web":     "Web",
-			}),
+				"label": "Platforms Supported",
+			}, AppPlatforms),
 		},
 		editor.Field{
 			View: editor.SelectRepeater("Year", a, map[string]string{
-				"label": "Year",
-			}, map[string]string{
-				"1": "Year 1",
-				"2": "Year 2",
-				"3": "Year 3",
-				"4": "Year 4",
-				"5": "Year 5",
-				"6": "Year 6",
-			}),
+				"label": "Year in NUS High",
+			}, AppYear),
 		},
 		editor.Field{
 			View: editor.Select("Type", a, map[string]string{
 				"label": "Type",
-			}, map[string]string{
-				"cs module":   "CS Module",
-				"competition": "Competition",
-				"by request":  "By Request",
-				"personal":    "Personal",
-			}),
+			}, AppType),
 		},
 		editor.Field{
 			View: editor.Input("PlaystorePackage", a, map[string]string{
-				"label":       "PlaystorePackage",
+				"label":       "Playstore Package",
 				"type":        "text",
 				"placeholder": "Paste your package path (com.example.app)",
 			}),
 		},
 		editor.Field{
 			View: editor.Input("AppstoreUrl", a, map[string]string{
-				"label":       "AppstoreUrl",
+				"label":       "Appstore URL",
 				"type":        "text",
 				"placeholder": "Paste your Apple App Store URL",
 			}),
@@ -110,7 +115,7 @@ func (a *App) MarshalEditor() ([]byte, error) {
 			View: editor.InputRepeater("Links", a, map[string]string{
 				"label":       "Links",
 				"type":        "text",
-				"placeholder": "Link your project website",
+				"placeholder": "Link your project website or source code",
 			}),
 		},
 		editor.Field{

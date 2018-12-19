@@ -1,83 +1,11 @@
 {{ template "header.html" . }}
 
 {{ with .Item }}
-<main class="page columns">
-	<div class="column">
-		<header>
-			<h1>{{ .Title }}</h1>
-			<p>
-				{{ range .Tags }}
-				#{{ .Name }}
-				{{ end }}
-			</p>
-			<p class="authors">
-				{{/*
-                {% for author in page.authors %}{% if forloop.first == true %}{{ author }}{% elsif forloop.last == false %}, {{ author }}{% elsif forloop.length != 1 %} and {{ author }}{% else %}{{ author }}{% endif %}{% endfor %}
-                */}}
-                Test
-			</p>
-			{{ if .Achievements }}
-			<h6 class="achievement-header">Achievements</h6>
-			<ul class="achievements plain">
-				{{ range .Achievements }}
-				<li>{{ . }}</li>
-				{{ end }}
-			</ul>
-			{{ end }}
-		</header>
-		<div class="content">
-			{{ .Content }}
-		</div>
-	</div>
+<main class="page">
+	<header>
+		<h1>{{ .Title }}</h1>
+	</header>
 </main>
-<script src="/assets/js/carousel.js"></script>
-<script>
-	document.addEventListener("DOMContentLoaded", function () {
-		var c = new Carousel(".carousel");
-		c.autoplay();
-		// TODO: rewrite below
-		var f = true;
-		var h = document.querySelectorAll(".column")[1].innerHTML;
-		document.querySelector(".toggle-grow").addEventListener("click", function toggle() {
-			if (window.matchMedia("(min-width: 960px)").matches && !document.querySelector(".mobile")) {
-				if (f) {
-					document.querySelector("main").style.flexWrap = "wrap";
-					document.querySelector(".carousel").style.maxWidth = "85rem";
-					document.querySelector(".column").style.maxWidth = "calc(84rem + 20vw)";
-					document.querySelectorAll(".column")[1].style.margin = "0";
-					document.querySelectorAll(".column")[1].style.flex = "0";
-					document.querySelectorAll(".column")[1].style.opacity = "0";
-					document.querySelectorAll(".column")[1].innerHTML = "";
-				} else {
-					document.querySelector("main").style.flexWrap = "nowrap";
-					document.querySelector(".carousel").style.maxWidth = "48rem";
-					document.querySelector(".column").style.maxWidth = "48rem";
-					document.querySelectorAll(".column")[1].style.flex = "1";
-					document.querySelectorAll(".column")[1].style.opacity = "1";
-					document.querySelectorAll(".column")[1].style.margin = "0 2rem";
-					document.querySelectorAll(".column")[1].innerHTML = h;
-					setTimeout(function () {
-						document.querySelectorAll(".column")[1].innerHTML = h;
-					}, 400);
-				}
-				f = !f;
-			}
-		});
-	});
-</script>
-{{/*
-<script src="/assets/js/popup.js"></script>
-<script>
-	document.addEventListener("DOMContentLoaded", function () {
-		var download = document.querySelector("#download");
-		var downloadurl = download.href;
-		download.href = "#java";
-		var popup = new Popup("java", '<div class="text"><h1>Requires Java</h1><p>Java is required to run this application. If the application does not run, <a href="https://www.java.com/verify/">verify that java is installed</a>. </p><p><a class="btn" href="' + downloadurl + '">Continue downloading JAR</a> <a class="btn light" href="https://www.java.com/download/">Get Java</a></p></div>', function () {
-				
-		});
-	});
-</script>
-*/}}
 {{ end }}
 
 {{ template "footer.html" . }}

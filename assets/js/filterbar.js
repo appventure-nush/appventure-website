@@ -24,6 +24,11 @@ FilterBar.prototype._registerEvents = function () {
 	var groups = this.parent.querySelectorAll(".group");
 	for (var i = 0; i < groups.length; i++) {
 		groups[i].querySelector("label").addEventListener("click", function () {
+			for (var j = 0; j < groups.length; j++) {
+				if (this.parentElement != groups[j]) {
+					groups[j].classList.remove("opened");
+				}
+			}
 			this.parentElement.classList.toggle("opened");
 		});
 		var tags = groups[i].querySelectorAll("[data-tag]");

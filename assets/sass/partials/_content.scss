@@ -16,7 +16,7 @@ main {
 		margin-bottom: 0;
 	}
 
-	.achievements {
+	.achievements ul {
 		margin-top: 0;
 		padding-left: 1em;
 		@include font-size(subtext);
@@ -28,6 +28,7 @@ main {
 	}
 
 	.content {
+		@extend p;
 		ul, ol {
 			padding-left: 1em;
 		}

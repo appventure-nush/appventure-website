@@ -15,7 +15,7 @@ $gallery-spacing: 1rem;
         position: relative;
 
         &.featured {
-            width: calc(100% - #{$gallery-spacing} * 2);	
+            width: calc(100% - #{$gallery-spacing} * 2);    
             .cover {
                 @include font-size(medium);
             }
@@ -40,10 +40,9 @@ $gallery-spacing: 1rem;
         height: 100%;
         position: absolute;
         border-radius: 8px;
+        padding: 0 1em;
         p {
-            height: 100%;
-            margin: 0;
-            padding: 0.5em 1em;
+            margin: 0.75em 0;
         }
         background-color: palette(gallery-cover-background);
         color: palette(gallery-cover-text);
