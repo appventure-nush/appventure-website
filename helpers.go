@@ -32,6 +32,9 @@ func NewHelpers() template.FuncMap {
 		"donotescape": func(a string) template.HTML {
 			return template.HTML(a)
 		},
+		"even": func(i int) bool {
+			return i%2 == 0
+		},
 		"size": func(size, url string) string {
 			if debug {
 				return apiHost + url + "?size=" + size

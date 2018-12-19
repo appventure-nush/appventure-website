@@ -16,6 +16,35 @@
 	<div>
 		<h1 class="center">Featured</h1>
 	</div>
+	
+	{{ range $i, $Item := .Items }}
+	{{ with $Item }}
+	<li class="featured-item page columns{{ if even $i }}{{ else }} reverse{{ end }}">
+		<div class="column">
+			<div class="carousel animate{{ if even $i }} from-left{{ else }} from-right{{ end }}">
+				<ul class="carousel-items">
+					<li class="carousel-item active">
+						<img class="picture" title="{{ galleryitem.title }}" alt="{{ galleryitem.title }}" src="{{ site.baseurl }}{% if galleryitem.url %}{{ galleryitem.url }}{% elsif galleryitem.name %}/assets/images{{ post.id }}/{{ galleryitem.name }}{% endif %}" />
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="column">
+			<h1>{{ post.title }}</h1>
+			<p class="authors">
+				{% for author in post.authors %}{% if forloop.first == true %}{{ author }}{% elsif forloop.last == false %}, {{ author }}{% elsif forloop.length != 1 %} and {{ author }}{% else %}{{ author }}{% endif %}{% endfor %}
+			</p>
+			<ul class="achievements plain">
+				{% for achievement in post.achievements %}
+				<li>{{ achievement }}</li>
+				{% endfor %}
+			</ul>
+			<p>{{ post.description }}</p>
+			<a class="btn" href="{{ site.baseurl }}{{ post.url }}">Read more</a>
+		</div>
+	</li>
+	{{ end }}
+	{{ end }}
 </main>
 
 <script src="/assets/js/scrollmanager.js"></script>
