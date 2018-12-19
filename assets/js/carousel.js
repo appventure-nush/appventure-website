@@ -47,12 +47,17 @@ Carousel.prototype.change = function (id, isClick) {
 	} else if (this.index < 0) {
 		this.index = this.items.length - 1;
 	}
-
+	
+	for (var i = 0; i < this.items.length; i++) {
+		this.parent.classList.remove("carousel-type-" + this.items[i].dataset["type"]);
+	}
+	
 	for (var i = 0; i < this.items.length; i++) {
 		this.items[i].classList.remove("active");
 		if (this.index == i) {
 			this.items[i].classList.add("active");
 			this.parent.title = this.items[i].children[0].title;
+			this.parent.classList.add("carousel-type-" + this.items[i].dataset["type"]);
 		}
 	}
 
@@ -80,8 +85,13 @@ Carousel.prototype._registerEvents = function () {
 		this.triggers[i].addEventListener("click", function (e) {
 			that.change(this.dataset.index, true);
 			e.preventDefault();
+			e.stopPropagation();
 		});
 	}
+	this.parent.querySelector(".carousel-items").addEventListener("click", function (e) {
+		window.open(that.items[that.index].dataset["href"]);
+		e.preventDefault();
+	}, false);
 };
 
 Carousel.prototype._registerTouchEvents = function () {

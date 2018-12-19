@@ -33,7 +33,10 @@ func NewHelpers() template.FuncMap {
 			return template.HTML(a)
 		},
 		"size": func(size, url string) string {
-			return "http://localhost:8080" + url
+			if debug {
+				return apiHost + url + "?size=" + size
+			}
+			return "/" + size + strings.Replace(url, "/api/uploads", "", -1)
 		},
 		"filterbar": GetFilterbar,
 	}

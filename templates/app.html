@@ -4,11 +4,11 @@
 {{ with .Item }}
 <main class="page columns">
 	<div class="column">
-		<div class="carousel" data-start="0">
+		<div class="carousel fullscreen" data-start="0">
 			<ul class="carousel-items">
 				{{ range $i, $screenshot := $screenshots }}
-				<li class="carousel-item{{ if eq $i 0 }} active{{ end }}">
-					<img class="picture" title="{{ .Description }}" alt="{{ .Description }}" src="{{ .Image }}" />
+				<li class="carousel-item{{ if eq $i 0 }} active{{ end }}" data-type="{{ .Type }}" data-href="{{ size "x1024" .Image }}">
+					<img class="picture" title="{{ .Description }}" alt="{{ .Description }}" src="{{ size "x360" .Image }}" />
 				</li>
 				{{ end }}
 			</ul>
@@ -21,7 +21,7 @@
 			</div>
 			<div class="carousel-overlay">
 				<a href="#" class="button previous" data-index="-1"><i class="icon-navigate_before"></i></a>
-				<a href="#" class="center toggle-grow"></a>
+				<!-- <a href="#" class="center toggle-grow"></a> -->
 				<a href="#" class="button next" data-index="+1"><i class="icon-navigate_next"></i></a>
 			</div>
 		</div>
@@ -80,34 +80,6 @@
 	document.addEventListener("DOMContentLoaded", function () {
 		var c = new Carousel(".carousel");
 		c.autoplay();
-		// TODO: rewrite below
-		var f = true;
-		var h = document.querySelectorAll(".column")[1].innerHTML;
-		document.querySelector(".toggle-grow").addEventListener("click", function toggle() {
-			if (window.matchMedia("(min-width: 960px)").matches && !document.querySelector(".mobile")) {
-				if (f) {
-					document.querySelector("main").style.flexWrap = "wrap";
-					document.querySelector(".carousel").style.maxWidth = "85rem";
-					document.querySelector(".column").style.maxWidth = "calc(84rem + 20vw)";
-					document.querySelectorAll(".column")[1].style.margin = "0";
-					document.querySelectorAll(".column")[1].style.flex = "0";
-					document.querySelectorAll(".column")[1].style.opacity = "0";
-					document.querySelectorAll(".column")[1].innerHTML = "";
-				} else {
-					document.querySelector("main").style.flexWrap = "nowrap";
-					document.querySelector(".carousel").style.maxWidth = "48rem";
-					document.querySelector(".column").style.maxWidth = "48rem";
-					document.querySelectorAll(".column")[1].style.flex = "1";
-					document.querySelectorAll(".column")[1].style.opacity = "1";
-					document.querySelectorAll(".column")[1].style.margin = "0 2rem";
-					document.querySelectorAll(".column")[1].innerHTML = h;
-					setTimeout(function () {
-						document.querySelectorAll(".column")[1].innerHTML = h;
-					}, 400);
-				}
-				f = !f;
-			}
-		});
 	});
 </script>
 {{/*

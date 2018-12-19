@@ -136,7 +136,7 @@ func (a *App) MarshalEditor() ([]byte, error) {
 				"label": "Screenshots",
 			},
 				"Screenshot",
-				`Screenshot: {{ .id }}`,
+				`{{ .hint }} "{{ .description }}"`,
 			),
 		},
 		editor.Field{

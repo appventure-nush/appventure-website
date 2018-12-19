@@ -12,6 +12,7 @@ type Screenshot struct {
 
 	Image       string `json:"image"`
 	Type        string `json:"type"`
+	Hint        string `json:"hint"`
 	Description string `json:"description"`
 }
 
@@ -35,6 +36,13 @@ func (s *Screenshot) MarshalEditor() ([]byte, error) {
 				"mobile-9-16":   "Mobile (9:16)",
 				"mobile-16-9":   "Mobile Landscape (16:9)",
 				"desktop-16-10": "Desktop (16:10)",
+			}),
+		},
+		editor.Field{
+			View: editor.Input("Hint", s, map[string]string{
+				"label":       "Hint (for internal use)",
+				"type":        "text",
+				"placeholder": "Type the appname here for reference",
 			}),
 		},
 		editor.Field{
