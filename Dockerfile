@@ -10,7 +10,7 @@ RUN node ./node_modules/grunt-cli/bin/grunt
 FROM golang:1.11-alpine as build
 
 WORKDIR /go/src/github.com/appventure-nush/appventure-website
-RUN apk add --no-cache git=2.18.0-r0
+RUN apk add --no-cache git=2.18.1-r0
 COPY . .
 ENV CGO_ENABLED=0
 ENV GOOS=linux
