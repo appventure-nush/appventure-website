@@ -42,5 +42,5 @@ yarn && yarn grunt
 # build and run website
 go build && ./appventure-website -debug
 # build and run API
-cd api && ponzu run
+cd api && ponzu run --port 8081
 ```
