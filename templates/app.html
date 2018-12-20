@@ -26,32 +26,31 @@
 			</div>
 		</div>
 		<div class="apps">
-        {{/*
-			{% if page.apps.link %}
-			<a href="{{ page.apps.link.url }}" class="link">
+			<!-- TODO: multiple links -->
+			{{ range .Links }}
+			<a href="{{ . }}" class="link">
 				<i class="icon-public"></i>
 				<span>Visit website</span>
 			</a>
-			{% endif %}
-			{% if page.apps.googleplay %}
-			<a href="{% if page.apps.googleplay.package %}https://play.google.com/store/apps/details?id={{ page.apps.googleplay.package }}{% else %}{{ page.apps.googleplay.url }}{% endif %}" class="link">
+			{{ end }}
+			{{ if .PlaystorePackage }}
+			<a href="https://play.google.com/store/apps/details?id={{ .PlaystorePackage }}" class="link">
 				<i class="icon-shop"></i>
 				<span>Get it on Google Play</span>
 			</a>
-			{% endif %}
-			{% if page.apps.appstore %}
-			<a href="{{ page.apps.appstore.url }}" class="link">
+			{{ end }}
+			{{ if .AppstoreUrl }}
+			<a href="{{ .AppstoreUrl }}" class="link">
 				<i class="icon-apple"></i>
 				<span>Download on the App Store</span>
 			</a>
-			{% endif %}
-			{% if page.apps.download %}
-			<a href="{{ page.apps.download.url }}" class="link" id="download">
+			{{ end }}
+			{{ range .Downloads }}
+			<a href="{{ . }}" class="link" id="download">
 				<i class="icon-get_app"></i>
-				<span>Download {{ page.apps.download.type }}</span>
+				<span>Download {{ fancyextension . }}</span>
 			</a>
-			{% endif %}
-        */}}
+			{{ end }}
 		</div>
 	</div>
 	<div class="column">

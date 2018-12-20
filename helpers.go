@@ -19,9 +19,6 @@ var imgRegexp = regexp.MustCompile(` src=".*?"`)
 // NewHelpers returns a list of helpers used in the templates
 func NewHelpers() template.FuncMap {
 	return template.FuncMap{
-		"plusone": func(i int) int {
-			return i + 1
-		},
 		"andify": func(items []string) string {
 			str := ""
 			for i, item := range items {
@@ -37,8 +34,16 @@ func NewHelpers() template.FuncMap {
 			}
 			return str
 		},
+		"even": func(i int) bool {
+			return i%2 == 0
+		},
 		"unslug": func(a string) string {
 			return strings.Join(strings.Split(a, "-")[1:], "-")
+		},
+		"size": slugToImage,
+		"fancyextension": func(s string) string {
+			dots := strings.Split(s, ".")
+			return strings.ToUpper(dots[len(dots)-1])
 		},
 		"html": func(a string) template.HTML {
 			// Transform <img> into proper links
@@ -50,10 +55,6 @@ func NewHelpers() template.FuncMap {
 			// If such trust can not be affirmed, add XSS filters here
 			return template.HTML(b)
 		},
-		"even": func(i int) bool {
-			return i%2 == 0
-		},
-		"size":      slugToImage,
 		"filterbar": getFilterbar,
 	}
 }
