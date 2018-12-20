@@ -8,7 +8,7 @@
 			<ul class="carousel-items">
 				{{ range $i, $screenshot := $screenshots }}
 				<li class="carousel-item{{ if eq $i 0 }} active{{ end }}" data-type="{{ .Type }}" data-href="{{ size "x1024" .Image }}">
-					<img class="picture" title="{{ .Description }}" alt="{{ .Description }}" src="{{ size "x360" .Image }}" />
+					<img title="{{ .Description }}" alt="{{ .Description }}" src="{{ size "x360" .Image }}" />
 				</li>
 				{{ end }}
 			</ul>
