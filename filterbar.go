@@ -4,22 +4,22 @@ import (
 	"github.com/appventure-nush/appventure-website/api/content"
 )
 
-type Filter struct {
+type filter struct {
 	Title string
 	Tags  map[string]string
 }
 
-func GetFilterbar() []Filter {
-	return []Filter{
-		Filter{
+func getFilterbar() []filter {
+	return []filter{
+		filter{
 			Title: "Platforms",
 			Tags:  content.AppPlatforms,
 		},
-		Filter{
+		filter{
 			Title: "Year",
 			Tags:  content.AppYear,
 		},
-		Filter{
+		filter{
 			Title: "Project Type",
 			Tags:  content.AppType,
 		},

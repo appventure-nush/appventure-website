@@ -2,6 +2,7 @@ package content
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/bosssauce/reference"
 
@@ -28,6 +29,19 @@ type App struct {
 	Content          string   `json:"content"`
 	Flags            []string `json:"flags"`
 }
+
+// Helpers
+
+func (a *App) Flagged(name string) bool {
+	for _, f := range a.Flags {
+		if f == name {
+			return true
+		}
+	}
+	return false
+}
+
+// Maps
 
 var AppPlatforms = map[string]string{
 	"mobile":  "Mobile",
@@ -160,6 +174,16 @@ func (a *App) MarshalEditor() ([]byte, error) {
 	}
 
 	return view, nil
+}
+
+// Create implements api.Createable
+func (a *App) Create(res http.ResponseWriter, req *http.Request) error {
+	return nil
+}
+
+// Approve implements editor.Mergeable
+func (a *App) Approve(res http.ResponseWriter, req *http.Request) error {
+	return nil
 }
 
 func init() {

@@ -2,6 +2,7 @@ package content
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/bosssauce/reference"
 
@@ -173,6 +174,16 @@ func (a *App) MarshalEditor() ([]byte, error) {
 	}
 
 	return view, nil
+}
+
+// Create implements api.Createable
+func (a *App) Create(res http.ResponseWriter, req *http.Request) error {
+	return nil
+}
+
+// Approve implements editor.Mergeable
+func (a *App) Approve(res http.ResponseWriter, req *http.Request) error {
+	return nil
 }
 
 func init() {

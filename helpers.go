@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func SlugToImage(size, slug string) string {
+func slugToImage(size, slug string) string {
 	if debug {
 		return apiHost + slug + "?size=" + size
 	}
@@ -44,7 +44,7 @@ func NewHelpers() template.FuncMap {
 			// Transform <img> into proper links
 			// WARNING: classes MUST not be set in the visual editor
 			b := imgRegexp.ReplaceAllStringFunc(a, func(match string) string {
-				return " src=\"" + SlugToImage("520x", match[6:len(match)-1]) + "\" class=\"picture\""
+				return " src=\"" + slugToImage("520x", match[6:len(match)-1]) + "\" class=\"picture\""
 			})
 			// WARNING: we trust that site admins will not inject malicious code into the website
 			// If such trust can not be affirmed, add XSS filters here
@@ -53,7 +53,7 @@ func NewHelpers() template.FuncMap {
 		"even": func(i int) bool {
 			return i%2 == 0
 		},
-		"size":      SlugToImage,
-		"filterbar": GetFilterbar,
+		"size":      slugToImage,
+		"filterbar": getFilterbar,
 	}
 }
