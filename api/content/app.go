@@ -85,6 +85,12 @@ func (a *App) MarshalEditor() ([]byte, error) {
 			}),
 		},
 		editor.Field{
+			View: editor.Richtext("Content", a, map[string]string{
+				"label":       "Content",
+				"placeholder": "Describe the app, the motivation behind it and your experience",
+			}),
+		},
+		editor.Field{
 			View: editor.InputRepeater("Authors", a, map[string]string{
 				"label":       "Authors",
 				"type":        "text",
@@ -103,7 +109,7 @@ func (a *App) MarshalEditor() ([]byte, error) {
 			}, AppPlatforms),
 		},
 		editor.Field{
-			View: editor.SelectRepeater("Year", a, map[string]string{
+			View: editor.Checkbox("Year", a, map[string]string{
 				"label": "Year in NUS High",
 			}, AppYear),
 		},
@@ -153,12 +159,6 @@ func (a *App) MarshalEditor() ([]byte, error) {
 				"Screenshot",
 				`{{ .hint }} "{{ .description }}"`,
 			),
-		},
-		editor.Field{
-			View: editor.Richtext("Content", a, map[string]string{
-				"label":       "Content",
-				"placeholder": "Describe the app, the motivation behind it and your experience",
-			}),
 		},
 		editor.Field{
 			View: editor.Checkbox("Flags", a, map[string]string{
