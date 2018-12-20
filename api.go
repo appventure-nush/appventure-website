@@ -15,7 +15,11 @@ type API struct {
 	host string
 }
 
+// Errors
+
 var ErrorNotFound = errors.New("not found")
+
+// Fetching
 
 func (api *API) Apps() ([]content.App, error) {
 	data := make(map[string][]content.App)
@@ -44,6 +48,36 @@ func (api *API) ScreenshotByReference(ref string) (content.Screenshot, error) {
 		return content.Screenshot{}, err
 	}
 	return data["data"][0], err
+}
+
+// Extended types
+
+type FeaturedApp struct {
+	content.App
+	content.Screenshot
+}
+
+// Extended fetching
+
+func (api *API) FeaturedApps() ([]FeaturedApp, error) {
+	all, err := api.Apps()
+	if err != nil {
+		return nil, err
+	}
+	var featured []FeaturedApp
+	for _, a := range all {
+		if a.Flagged("featured") {
+			var s content.Screenshot
+			if len(a.Screenshots) > 0 {
+				s, _ = api.ScreenshotByReference(a.Screenshots[0])
+			}
+			featured = append(featured, FeaturedApp{
+				App:        a,
+				Screenshot: s,
+			})
+		}
+	}
+	return featured, err
 }
 
 func (api *API) get(path string, v interface{}) error {

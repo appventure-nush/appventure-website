@@ -29,7 +29,9 @@ func NewHelpers() template.FuncMap {
 		"unslug": func(a string) string {
 			return strings.Join(strings.Split(a, "-")[1:], "-")
 		},
-		"donotescape": func(a string) template.HTML {
+		"html": func(a string) template.HTML {
+			// WARNING: we trust that site admins will not inject malicious code into the website
+			// If such trust can not be affirmed, add XSS filters here
 			return template.HTML(a)
 		},
 		"even": func(i int) bool {

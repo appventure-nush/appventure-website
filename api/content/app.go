@@ -26,7 +26,21 @@ type App struct {
 	Icon             string   `json:"icon"`
 	Screenshots      []string `json:"screenshots"`
 	Content          string   `json:"content"`
+	Flags            []string `json:"flags"`
 }
+
+// Helpers
+
+func (a *App) Flagged(name string) bool {
+	for _, f := range a.Flags {
+		if f == name {
+			return true
+		}
+	}
+	return false
+}
+
+// Maps
 
 var AppPlatforms = map[string]string{
 	"mobile":  "Mobile",
@@ -143,6 +157,13 @@ func (a *App) MarshalEditor() ([]byte, error) {
 			View: editor.Richtext("Content", a, map[string]string{
 				"label":       "Content",
 				"placeholder": "Describe the app, the motivation behind it and your experience",
+			}),
+		},
+		editor.Field{
+			View: editor.Checkbox("Flags", a, map[string]string{
+				"label": "Flags",
+			}, map[string]string{
+				"featured": "Featured",
 			}),
 		},
 	)

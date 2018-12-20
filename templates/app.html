@@ -66,12 +66,12 @@
 			{{ if .Achievements }}
 			<h6 class="achievement-header">Achievements</h6>
 			<div class="achievements plain">
-				{{ donotescape .Achievements }}
+				{{ html .Achievements }}
 			</div>
 			{{ end }}
 		</header>
 		<div class="content">
-			{{ donotescape .Content }}
+			{{ html .Content }}
 		</div>
 	</div>
 </main>

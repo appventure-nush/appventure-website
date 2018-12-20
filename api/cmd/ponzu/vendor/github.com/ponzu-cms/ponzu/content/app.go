@@ -26,6 +26,7 @@ type App struct {
 	Icon             string   `json:"icon"`
 	Screenshots      []string `json:"screenshots"`
 	Content          string   `json:"content"`
+	Flags            []string `json:"flags"`
 }
 
 var AppPlatforms = map[string]string{
@@ -143,6 +144,13 @@ func (a *App) MarshalEditor() ([]byte, error) {
 			View: editor.Richtext("Content", a, map[string]string{
 				"label":       "Content",
 				"placeholder": "Describe the app, the motivation behind it and your experience",
+			}),
+		},
+		editor.Field{
+			View: editor.Checkbox("Flags", a, map[string]string{
+				"label": "Flags",
+			}, map[string]string{
+				"featured": "Featured",
 			}),
 		},
 	)

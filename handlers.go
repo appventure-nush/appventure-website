@@ -30,7 +30,14 @@ func (h *Handlers) page(tmpl string, page string) httprouter.Handle {
 }
 
 func (h *Handlers) home(w http.ResponseWriter, rq *http.Request, ps httprouter.Params) {
+	apps, err := h.api.FeaturedApps()
+	if err != nil {
+		log.Println(err)
+		h.tm.RenderError(w, http.StatusInternalServerError)
+		return
+	}
 	h.tm.Render(w, "index.html", Context{
+		Items: apps,
 		Jumbo: true,
 	})
 }
