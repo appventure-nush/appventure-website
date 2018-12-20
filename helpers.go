@@ -10,6 +10,7 @@ func SlugToImage(size, slug string) string {
 	if debug {
 		return apiHost + slug + "?size=" + size
 	}
+	// TODO: use signed URLs
 	return "/img/" + size + strings.Replace(slug, "/api/uploads", "", -1)
 }
 
