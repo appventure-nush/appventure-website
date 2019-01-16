@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/appventure-nush/appventure-website/api/content"
+	"appventure-website/api/content"
 )
 
 type filter struct {

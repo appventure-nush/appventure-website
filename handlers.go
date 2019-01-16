@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/appventure-nush/appventure-website/api/content"
+	"appventure-website/api/content"
 	"github.com/julienschmidt/httprouter"
 )
 
@@ -81,16 +81,40 @@ func (h *Handlers) app(w http.ResponseWriter, rq *http.Request, ps httprouter.Pa
 }
 
 func (h *Handlers) projects(w http.ResponseWriter, rq *http.Request, ps httprouter.Params) {
+	projects, err := h.api.Projects()
+	if err != nil {
+		log.Println(err)
+		h.tm.RenderError(w, http.StatusInternalServerError)
+		return
+	}
 	h.tm.Render(w, "projects.html", Context{
 		Title: "Projects",
-		Items: nil,
+		Items: projects,
 	})
 }
 
 func (h *Handlers) project(w http.ResponseWriter, rq *http.Request, ps httprouter.Params) {
+	project, err := h.api.App("app-" + ps.ByName("slug"))
+	if err == ErrorNotFound {
+		log.Println(err)
+		h.tm.RenderError(w, http.StatusNotFound)
+		return
+	} else if err != nil {
+		log.Println(err)
+		h.tm.RenderError(w, http.StatusInternalServerError)
+		return
+	}
+	screenshots := make([]content.Screenshot, 0)
+	for _, s := range project.Screenshots {
+		screenshot, err := h.api.ScreenshotByReference(s)
+		if err != nil {
+			log.Println(err)
+		}
+		screenshots = append(screenshots, screenshot)
+	}
 	h.tm.Render(w, "project.html", Context{
-		Title: "",
-		Item:  nil,
+		Item: project,
+		Items:  screenshots,
 	})
 }
 

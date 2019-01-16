@@ -14,7 +14,7 @@
 			</ul>
 			<div class="carousel-badges">
 				<ul class="carousel-badges-bar">
-                    {{ range $i, $screenshot := $screenshots }}
+					{{ range $i, $screenshot := $screenshots }}
 					<a href="#" class="carousel-badge{{ if eq $i 0 }} active{{ end }}" data-index="{{ $i }}"></a>
 					{{ end }}
 				</ul>
@@ -76,7 +76,7 @@
 </main>
 <script src="/assets/js/carousel.js"></script>
 <script>
-	document.addEventListener("DOMContentLoaded", function () {
+	document.addEventListener("DOMContentLoaded", function() {
 		var c = new Carousel(".carousel");
 		c.autoplay();
 	});
@@ -89,7 +89,7 @@
 		var downloadurl = download.href;
 		download.href = "#java";
 		var popup = new Popup("java", '<div class="text"><h1>Requires Java</h1><p>Java is required to run this application. If the application does not run, <a href="https://www.java.com/verify/">verify that java is installed</a>. </p><p><a class="btn" href="' + downloadurl + '">Continue downloading JAR</a> <a class="btn light" href="https://www.java.com/download/">Get Java</a></p></div>', function () {
-				
+
 		});
 	});
 </script>

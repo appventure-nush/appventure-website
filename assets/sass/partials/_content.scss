@@ -1,7 +1,12 @@
 main {
 	padding: 0 2rem;
+	margin-bottom: 6rem !important;
 	@include paragraphing(main);
-	min-height: 50vh;
+	min-height: 60vh;
+
+	h1, h2 {
+		margin-top: 4rem;
+	}
 
 	.apps {
 		text-align: center;
@@ -33,14 +38,14 @@ main {
 			padding-left: 1em;
 		}
 	}
-	
+
 	.pull-right {
 		float: right;
 	}
 	.pull-left {
 		float: left;
 	}
-	
+
 	.clearfix {
 		clear: both;
 	}

@@ -7,7 +7,7 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/appventure-nush/appventure-website/api/content"
+	"appventure-website/api/content"
 )
 
 type API struct {
@@ -16,12 +16,10 @@ type API struct {
 }
 
 // Errors
-
 var ErrorNotFound = errors.New("not found")
 
 // Fetching
-
-func (api *API) Apps() ([]content.App, error) {
+func (api *API) ALL() ([]content.App, error) {
 	data := make(map[string][]content.App)
 	params := url.Values{}
 	params.Add("type", "App")
@@ -29,7 +27,47 @@ func (api *API) Apps() ([]content.App, error) {
 	return data["data"], err
 }
 
+func (api *API) Apps() ([]content.App, error) {
+	all, err := api.ALL()
+	if err != nil {
+		return nil, err
+	}
+	var apps []content.App
+	for _, a := range all {
+		if !a.Flagged("project") {
+			apps = append(apps, a)
+		}
+	}
+	return apps, err
+}
+
 func (api *API) App(slug string) (content.App, error) {
+	data := make(map[string][]content.App)
+	params := url.Values{}
+	params.Add("type", "App")
+	params.Add("slug", slug)
+	err := api.get("/api/content?"+params.Encode(), &data)
+	if len(data["data"]) < 1 {
+		return content.App{}, err
+	}
+	return data["data"][0], err
+}
+
+func (api *API) Projects() ([]content.App, error) {
+	all, err := api.ALL()
+	if err != nil {
+		return nil, err
+	}
+	var projects []content.App
+	for _, a := range all {
+		if a.Flagged("project") {
+			projects = append(projects, a)
+		}
+	}
+	return projects, err
+}
+
+func (api *API) Project(slug string) (content.App, error) {
 	data := make(map[string][]content.App)
 	params := url.Values{}
 	params.Add("type", "App")

@@ -16,11 +16,11 @@ The AppVenture website is a Go webapp that generates pages out of static [templa
 
 ## Assets
 
-The stylesheets are written in Sass's SCSS format and complied into a single stylesheet using Grunt. JavaScript is written plain using prototype syntax. 
+The stylesheets are written in Sass's SCSS format and complied into a single stylesheet using Grunt. JavaScript is written plain using prototype syntax.
 
 # appventure-api
 
-In the [api](api/) folder is where the resources the API provides are defined. It uses [Ponzu](https://docs.ponzu-cms.org/) to automatically generate an API from the types defined in the [content](api/content/) folder. 
+In the [api](api/) folder is where the resources the API provides are defined. It uses [Ponzu](https://docs.ponzu-cms.org/) to automatically generate an API from the types defined in the [content](api/content/) folder.
 
 It also exposes an admin interface at the path /admin/
 
@@ -42,5 +42,5 @@ yarn && yarn grunt
 # build and run website
 go build && ./appventure-website -debug
 # build and run API
-cd api && ponzu run --port 8081
+cd api && ponzu build && ponzu run --port 8081
 ```

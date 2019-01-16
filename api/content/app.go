@@ -165,6 +165,7 @@ func (a *App) MarshalEditor() ([]byte, error) {
 				"label": "Flags",
 			}, map[string]string{
 				"featured": "Featured",
+				"project": "Comunity Project",
 			}),
 		},
 	)
