@@ -40,7 +40,7 @@ cd $ORG/appventure-website
 # build CSS
 yarn && yarn grunt
 # build and run website
-go build && ./appventure-website -debug
+go get && go build && ./appventure-website -debug
 # build and run API
 cd api && ponzu build && ponzu run --port 8081
 ```
