@@ -1,3 +1,5 @@
+var opened = false;
+
 function FilterBar(ele, collection) {
 	if (typeof ele == "string") {
 		var filterbars = document.querySelectorAll(ele);
@@ -30,6 +32,7 @@ FilterBar.prototype._registerEvents = function () {
 				}
 			}
 			this.parentElement.classList.toggle("opened");
+			opened = false;
 		});
 		var tags = groups[i].querySelectorAll("[data-tag]");
 		for (var j = 0; j < tags.length; j++) {
@@ -56,4 +59,19 @@ FilterBar.prototype._updateFilter = function () {
 	}
 	console.log(filter);
 	this.filter.update(filter);
+};
+
+document.onclick = function(){
+	if(opened){
+		var filterbar = document.querySelector("div.filterbar");
+		var groups = filterbar.querySelectorAll(".group");
+		for (var j = 0; j < groups.length; j++) {
+			if(groups[j].classList.contains("opened")){
+				groups[j].classList.remove("opened");
+				opened = false;
+			}
+		}
+	}else{
+		opened = true;
+	}
 };
