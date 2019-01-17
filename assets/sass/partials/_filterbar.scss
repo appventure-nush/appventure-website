@@ -1,7 +1,15 @@
 .filterbar {
+	@extend .noselect;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	align-content: space-around;
+	flex-wrap: wrap;
+
 	.group {
 		display: inline-block;
 		position: relative;
+		margin-left: 1rem;
 
 		label {
 			@extend .btn;

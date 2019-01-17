@@ -33,6 +33,7 @@ func (s *Screenshot) MarshalEditor() ([]byte, error) {
 			View: editor.Select("Type", s, map[string]string{
 				"label": "Type",
 			}, map[string]string{
+				"raw" : "Raw (Original)",
 				"mobile-9-16":   "Mobile (9:16)",
 				"mobile-16-9":   "Mobile Landscape (16:9)",
 				"desktop-16-10": "Desktop (16:10)",
