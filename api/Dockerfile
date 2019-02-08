@@ -1,7 +1,7 @@
 FROM golang:1.11-alpine as build
 
 WORKDIR /go/src/github.com/appventure-nush/appventure-website/api
-RUN apk add --no-cache git=2.18.1-r0
+RUN apk add --no-cache git
 COPY . .
 ENV CGO_ENABLED=0
 ENV GOOS=linux
