@@ -23,7 +23,8 @@ FilterBar.prototype._registerEvents = function() {
 
   var groups = this.parent.querySelectorAll(".group");
   for (var i = 0; i < groups.length; i++) {
-    groups[i].querySelector("label").addEventListener("click", function() {
+    groups[i].querySelector("label").addEventListener("click", function(e) {
+      e.stopPropagation();
       for (var j = 0; j < groups.length; j++) {
         if (this.parentElement != groups[j]) {
           groups[j].classList.remove("opened");
@@ -33,7 +34,8 @@ FilterBar.prototype._registerEvents = function() {
     });
     var tags = groups[i].querySelectorAll("[data-tag]");
     for (var j = 0; j < tags.length; j++) {
-      tags[j].addEventListener("click", function() {
+      tags[j].addEventListener("click", function(e) {
+        e.stopPropagation();
         this.classList.toggle("checked");
         that._updateFilter();
       });
