@@ -81,16 +81,32 @@ func (h *Handlers) app(w http.ResponseWriter, rq *http.Request, ps httprouter.Pa
 }
 
 func (h *Handlers) projects(w http.ResponseWriter, rq *http.Request, ps httprouter.Params) {
+	projects, err := h.api.Projects()
+	if err != nil {
+		log.Println(err)
+		h.tm.RenderError(w, http.StatusInternalServerError)
+		return
+	}
 	h.tm.Render(w, "projects.html", Context{
 		Title: "Projects",
-		Items: nil,
+		Items: projects,
 	})
 }
 
 func (h *Handlers) project(w http.ResponseWriter, rq *http.Request, ps httprouter.Params) {
+	project, err := h.api.Project("project-" + ps.ByName("slug"))
+	if err == ErrorNotFound {
+		log.Println(err)
+		h.tm.RenderError(w, http.StatusNotFound)
+		return
+	} else if err != nil {
+		log.Println(err)
+		h.tm.RenderError(w, http.StatusInternalServerError)
+		return
+	}
 	h.tm.Render(w, "project.html", Context{
 		Title: "",
-		Item:  nil,
+		Item:  project,
 	})
 }
 

@@ -4,6 +4,7 @@ import (
 	"html/template"
 	"regexp"
 	"strings"
+	"time"
 )
 
 func slugToImage(size, slug string) string {
@@ -15,6 +16,9 @@ func slugToImage(size, slug string) string {
 }
 
 var imgRegexp = regexp.MustCompile(` src=".*?"`)
+var pRegexp = regexp.MustCompile(`(?ms:^\s*<p( .*|)>.*<\/p>\s*$)`)
+
+var singaporeTime, _ = time.LoadLocation("Asia/Singapore")
 
 // NewHelpers returns a list of helpers used in the templates
 func NewHelpers() template.FuncMap {
@@ -51,9 +55,21 @@ func NewHelpers() template.FuncMap {
 			b := imgRegexp.ReplaceAllStringFunc(a, func(match string) string {
 				return " src=\"" + slugToImage("520x", match[6:len(match)-1]) + "\" class=\"picture\""
 			})
+			// Add paragraph tags if necessary
+			if !pRegexp.MatchString(b) {
+				b = `<p>` + b + `</p>`
+			}
 			// WARNING: we trust that site admins will not inject malicious code into the website
 			// If such trust can not be affirmed, add XSS filters here
 			return template.HTML(b)
+		},
+		"date": func(i int64) string {
+			t := time.Unix(i/1000, 0).In(singaporeTime)
+			return t.Format("2 Jan 2006")
+		},
+		"year": func(i int64) string {
+			t := time.Unix(i/1000, 0).In(singaporeTime)
+			return t.Format("2006")
 		},
 		"filterbar": getFilterbar,
 	}

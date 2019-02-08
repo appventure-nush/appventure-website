@@ -1,7 +1,26 @@
 {{ template "header.html" . }}
 
-<main>
-<!-- Blog listing with excerpts here -->
+<main class="page projects">
+  <header>
+    <h1>Projects</h1>
+    <p>
+      Student made projects that improve the quality of life of those in school as well as the community
+    </p>
+  </header>
+  <!-- Blog listing with excerpts here -->
+  {{ range .Items }}
+  <section class="project">
+    <h2><a href="/projects/{{ unslug .Slug }}">{{ .Name }}</a></h2>
+    <div class="summary">
+      {{ html .Summary }}
+    </div>
+    <p class="authors">By {{ andify .Authors }} &bull; <a href="/projects/{{ unslug .Slug }}">Read more &raquo;</a></p>
+  </section>
+  {{ else }}
+  <div class="project center">
+    <h2>No projects published</h2>
+  </div>
+  {{ end }}
 </main>
 
 {{ template "footer.html" . }}

@@ -1,99 +1,94 @@
-{{ template "header.html" . }}
-
-{{ $screenshots := .Items }}
-{{ with .Item }}
+{{ template "header.html" . }} {{ $screenshots := .Items }} {{ with .Item }}
 <main class="page columns">
-	<div class="column">
-		<div class="carousel fullscreen" data-start="0">
-			<ul class="carousel-items">
-				{{ range $i, $screenshot := $screenshots }}
-				<li class="carousel-item{{ if eq $i 0 }} active{{ end }}" data-type="{{ .Type }}" data-href="{{ size "x1024" .Image }}">
-					<img title="{{ .Description }}" alt="{{ .Description }}" src="{{ size "x360" .Image }}" />
-				</li>
-				{{ end }}
-			</ul>
-			<div class="carousel-badges">
-				<ul class="carousel-badges-bar">
-                    {{ range $i, $screenshot := $screenshots }}
-					<a href="#" class="carousel-badge{{ if eq $i 0 }} active{{ end }}" data-index="{{ $i }}"></a>
-					{{ end }}
-				</ul>
-			</div>
-			<div class="carousel-overlay">
-				<a href="#" class="button previous" data-index="-1"><i class="icon-navigate_before"></i></a>
-				<!-- <a href="#" class="center toggle-grow"></a> -->
-				<a href="#" class="button next" data-index="+1"><i class="icon-navigate_next"></i></a>
-			</div>
-		</div>
-		<div class="apps">
-			<!-- TODO: multiple links -->
-			{{ range .Links }}
-			<a href="{{ . }}" class="link">
-				<i class="icon-public"></i>
-				<span>Visit website</span>
-			</a>
-			{{ end }}
-			{{ if .PlaystorePackage }}
-			<a href="https://play.google.com/store/apps/details?id={{ .PlaystorePackage }}" class="link">
-				<i class="icon-shop"></i>
-				<span>Get it on Google Play</span>
-			</a>
-			{{ end }}
-			{{ if .AppstoreUrl }}
-			<a href="{{ .AppstoreUrl }}" class="link">
-				<i class="icon-apple"></i>
-				<span>Download on the App Store</span>
-			</a>
-			{{ end }}
-			{{ range .Downloads }}
-			<a href="{{ . }}" class="link" id="download">
-				<i class="icon-get_app"></i>
-				<span>Download {{ fancyextension . }}</span>
-			</a>
-			{{ end }}
-		</div>
-	</div>
-	<div class="column">
-		<header>
-			<h1>{{ .Name }}</h1>
-			<p>
-				{{ range .Platforms }}#{{ . }} {{ end }}{{ range .Year }}#year-{{ . }} {{ end }}#{{ .Type }}
-			</p>
-			<p class="authors">
-				{{ andify .Authors }}
-			</p>
-			{{ if .Achievements }}
-			<h6 class="achievement-header">Achievements</h6>
-			<div class="achievements plain">
-				{{ html .Achievements }}
-			</div>
-			{{ end }}
-		</header>
-		<div class="content">
-			{{ html .Content }}
-		</div>
-	</div>
+  <div class="column">
+    <div class="carousel fullscreen" data-start="0">
+      <ul class="carousel-items">
+        {{ range $i, $screenshot := $screenshots }}
+        <li class="carousel-item{{ if eq $i 0 }} active{{ end }}" data-type="{{ .Type }}" data-href='{{ size "x1024" .Image }}'>
+          <img title="{{ .Description }}" alt="{{ .Description }}" src='{{ size "x360" .Image }}' />
+        </li>
+        {{ end }}
+      </ul>
+      <div class="carousel-badges">
+        <ul class="carousel-badges-bar">
+          {{ range $i, $screenshot := $screenshots }}
+          <a href="#" class="carousel-badge{{ if eq $i 0 }} active{{ end }}" data-index="{{ $i }}"></a>
+          {{ end }}
+        </ul>
+      </div>
+      <div class="carousel-overlay">
+        <a href="#" class="button previous" data-index="-1"><i class="icon-navigate_before"></i></a>
+        <!-- <a href="#" class="center toggle-grow"></a> -->
+        <a href="#" class="button next" data-index="+1"><i class="icon-navigate_next"></i></a>
+      </div>
+    </div>
+    <div class="apps">
+      <!-- TODO: multiple links -->
+      {{ range .Links }}
+      <a href="{{ . }}" class="link">
+        <i class="icon-public"></i>
+        <span>Visit website</span>
+      </a>
+      {{ end }} {{ if .PlaystorePackage }}
+      <a href="https://play.google.com/store/apps/details?id={{ .PlaystorePackage }}" class="link">
+        <i class="icon-shop"></i>
+        <span>Get it on Google Play</span>
+      </a>
+      {{ end }} {{ if .AppstoreUrl }}
+      <a href="{{ .AppstoreUrl }}" class="link">
+        <i class="icon-apple"></i>
+        <span>Download on the App Store</span>
+      </a>
+      {{ end }} {{ range .Downloads }}
+      <a href="{{ . }}" class="link" id="download">
+        <i class="icon-get_app"></i>
+        <span>Download {{ fancyextension . }}</span>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+  <div class="column">
+    <header>
+      <h1>{{ .Name }}</h1>
+      <p>
+        {{ range .Platforms }}#{{ . }} {{ end }}{{ range .Year }}#year-{{ . }} {{ end }}#{{ .Type }}
+      </p>
+      <div class="authors">
+        {{ andify .Authors }}
+      </div>
+      {{ if .Achievements }}
+      <h6 class="achievement-header">Achievements</h6>
+      <div class="achievements plain">
+        {{ html .Achievements }}
+      </div>
+      {{ end }}
+    </header>
+    <div class="content">
+      {{ html .Content }}
+    </div>
+  </div>
 </main>
 <script src="/assets/js/carousel.js"></script>
 <script>
-	document.addEventListener("DOMContentLoaded", function () {
-		var c = new Carousel(".carousel");
-		c.autoplay();
-	});
+  document.addEventListener("DOMContentLoaded", function() {
+    var c = new Carousel(".carousel");
+    c.autoplay();
+  });
 </script>
 {{/*
 <script src="/assets/js/popup.js"></script>
 <script>
-	document.addEventListener("DOMContentLoaded", function () {
-		var download = document.querySelector("#download");
-		var downloadurl = download.href;
-		download.href = "#java";
-		var popup = new Popup("java", '<div class="text"><h1>Requires Java</h1><p>Java is required to run this application. If the application does not run, <a href="https://www.java.com/verify/">verify that java is installed</a>. </p><p><a class="btn" href="' + downloadurl + '">Continue downloading JAR</a> <a class="btn light" href="https://www.java.com/download/">Get Java</a></p></div>', function () {
-				
-		});
-	});
+  document.addEventListener("DOMContentLoaded", function() {
+    var download = document.querySelector("#download");
+    var downloadurl = download.href;
+    download.href = "#java";
+    var popup = new Popup(
+      "java",
+      '<div class="text"><h1>Requires Java</h1><p>Java is required to run this application. If the application does not run, <a href="https://www.java.com/verify/">verify that java is installed</a>. </p><p><a class="btn" href="' +
+        downloadurl +
+        '">Continue downloading JAR</a> <a class="btn light" href="https://www.java.com/download/">Get Java</a></p></div>',
+      function() {}
+    );
+  });
 </script>
-*/}}
-{{ end }}
-
-{{ template "footer.html" . }}
+*/}} {{ end }} {{ template "footer.html" . }}

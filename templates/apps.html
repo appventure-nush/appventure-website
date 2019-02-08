@@ -1,32 +1,44 @@
 {{ template "header.html" . }}
 
 <main>
-    {{ template "filterbar.html" }}
-    <ul class="gallery">
-        {{ range .Items }}
-        <a href="/apps/{{ unslug .Slug }}">
-            <li class="gallery-item"
-                data-filterable="tags"
-				data-tags="{{ range .Platforms }}{{ . }},{{ end }}{{ range .Year }}{{ . }},{{ end }}{{ .Type }}">
-				<img class="icon" src="{{ size "128" .Icon }}" />
-                <div class="text">
-                    <h6>{{ .Name }}</h6>
-					<p>{{ andify .Authors }}</p>
-                </div>
-                <div class="cover">
-					<p>{{ html .Description }}</p>
-                </div>	
-            </li>
-        </a>
-        {{ end }}
-    </ul>
+  <header>
+    <h1>Apps</h1>
+    <p>
+      Applications made by students, for both competitions and the school curriculum
+    </p>
+  </header>
+  {{ template "filterbar.html" }}
+  <ul class="gallery">
+    {{ range .Items }}
+    <a href="/apps/{{ unslug .Slug }}">
+      <li
+        class="gallery-item"
+        data-filterable="tags"
+        data-tags="{{ range .Platforms }}{{ . }},{{ end }}{{ range .Year }}{{ . }},{{ end }}{{ .Type }}"
+      >
+        <img class="icon" src="{{ size "128" .Icon }}" />
+        <div class="text">
+          <h6>{{ .Name }}</h6>
+          <p>{{ andify .Authors }}</p>
+        </div>
+        <div class="cover">
+          {{ html .Description }}
+        </div>
+      </li>
+    </a>
+    {{ else }}
+    <div class="gallery-item center" style="width: 100%">
+      <h2>No apps published</h2>
+    </div>
+    {{ end }}
+  </ul>
 </main>
 <script src="/assets/js/filter.js"></script>
 <script src="/assets/js/filterbar.js"></script>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-	var fb = new FilterBar(".filterbar", ".gallery");
-});
+  document.addEventListener("DOMContentLoaded", function() {
+    var fb = new FilterBar(".filterbar", ".gallery");
+  });
 </script>
 
 {{ template "footer.html" . }}

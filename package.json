@@ -1,12 +1,16 @@
 {
   "name": "appventure",
   "version": "0.1.0",
+  "scripts": {
+    "fmt": "prettier --trailing-comma es5 --write 'assets/{js,sass}/**' && prettier --trailing-comma es5 --print-width 130 --write 'templates/*.html'"
+  },
   "devDependencies": {
-    "grunt-cli": "~1.2.0",
+    "autoprefixer": "~6.4.1",
     "grunt": "~1.0.1",
-    "grunt-sass": "~2.0.0",
+    "grunt-cli": "~1.2.0",
     "grunt-contrib-watch": "~1.0.0",
     "grunt-postcss": "^0.8.0",
-    "autoprefixer": "~6.4.1"
+    "grunt-sass": "~2.0.0",
+    "prettier": "^1.16.4"
   }
 }

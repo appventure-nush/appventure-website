@@ -1,178 +1,185 @@
 $carousel-types: (
-	desktop-16-10: (
-		height: 26rem,
-		top: 0.083,
-		bottom: 0.095,
-		ratio: 16 / 10,
-	),
-	mobile-9-16: (
-		height: 42rem,
-		top: 0.105,
-		bottom: 0.105,
-		ratio: 9 / 16,
-	),
-	mobile-16-9: (
-		height: 24rem,
-		top: 0.2,
-		bottom: 0.2,
-		ratio: 16 / 9,
-	),
+  desktop-16-10: (
+    height: 26rem,
+    top: 0.083,
+    bottom: 0.095,
+    ratio: 16 / 10,
+  ),
+  mobile-9-16: (
+    height: 42rem,
+    top: 0.105,
+    bottom: 0.105,
+    ratio: 9 / 16,
+  ),
+  mobile-16-9: (
+    height: 24rem,
+    top: 0.2,
+    bottom: 0.2,
+    ratio: 16 / 9,
+  ),
 );
 
 .carousel {
-	position: relative;
-	margin-left: auto;
-	margin-right: auto;
-	width: 100%;
-	background: #fff no-repeat center / auto 100%;
-	
-	@each $type, $spec in $carousel-types {
-		&.carousel-type-#{$type} {
-			$height: map-get($spec, height);
-			$top: map-get($spec, top);
-			$bottom: map-get($spec, bottom);
-			$ratio: map-get($spec, ratio);
-			background-image: url("/assets/images/" + $type + ".svg");
-			font-size: $height;
-			height: 1em;
-			@media screen and (max-width: 480px) {
-				font-size: $height*0.666;
-			}
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  background: #fff no-repeat center / auto 100%;
 
-			& > * {
-				top: 1em * $top;
-				bottom: 1em * $bottom;
-				width: 1em * (1 - $top - $bottom) * $ratio;
-				position: absolute;
-				left: 50%;
-				margin-left: - 0.5 * 1em * (1 - $top - $bottom) * $ratio;
-			}
-		}
-	}
-	
-	ul {
-		list-style: none;
-		margin: 0;
-	}
+  @each $type, $spec in $carousel-types {
+    &.carousel-type-#{$type} {
+      $height: map-get($spec, height);
+      $top: map-get($spec, top);
+      $bottom: map-get($spec, bottom);
+      $ratio: map-get($spec, ratio);
+      background-image: url("/assets/images/"+$type+".svg");
+      font-size: $height;
+      height: 1em;
+      @media screen and (max-width: 480px) {
+        font-size: $height * 0.666;
+      }
 
-	.carousel-item {
-		position: absolute;
-		height: 100%;
-		width: 100%;
-		background: palette(carousel-frame-background);
-		overflow: hidden;
-		display: flex;
-		justify-content: center;
-		img {
-			height: 100%;
-		}
+      & > * {
+        top: 1em * $top;
+        bottom: 1em * $bottom;
+        width: 1em * (1 - $top - $bottom) * $ratio;
+        position: absolute;
+        left: 50%;
+        margin-left: -0.5 * 1em * (1 - $top - $bottom) * $ratio;
+      }
+    }
+  }
 
-		opacity: 0;
-		pointer-events: none;
-		&.active {
-			opacity: 1;
-			pointer-events: auto;
-		}
-		transition: 0.5s opacity;
-	}
-	
-	.carousel-overlay {
-		$carousel-overlay-fade-time: 0.5s;
-		opacity: 0;
-		&:hover {
-			opacity: 1;
-		}
-		transition: $carousel-overlay-fade-time opacity;
+  ul {
+    list-style: none;
+    margin: 0;
+  }
 
-		.button {
-			font-size: 2.4rem;
-			color: rgba(255, 255, 255, 0.8);
-		}
+  .carousel-item {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: palette(carousel-frame-background);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    img {
+      height: 100%;
+    }
 
-		.previous, .next {
-			height: 100%;
-			width: 1.6em;
-			position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    &.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    transition: 0.5s opacity;
+  }
 
-			i {
-				position: absolute;
-			}
-		}
-		.previous {
-			left: 0;
-			background: linear-gradient(90deg, rgba(0, 0, 0, 0.333), rgba(0, 0, 0, 0));
-		}
-		.next {
-			right: 0;
-			background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.333));
+  .carousel-overlay {
+    $carousel-overlay-fade-time: 0.5s;
+    opacity: 0;
+    &:hover {
+      opacity: 1;
+    }
+    transition: $carousel-overlay-fade-time opacity;
 
-			i {
-				right: 0;
-			}
-		}
-		
-		i {
-			display: block;
-			position: relative;
-			top: 50%;
-			margin-top: -0.5em;
-		}
-	}
+    .button {
+      font-size: 2.4rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
 
-	.carousel-badges {
-		$carousel-badge-fade-time: 0.5s;
+    .previous,
+    .next {
+      height: 100%;
+      width: 1.6em;
+      position: absolute;
 
-		.carousel-badges-bar {
-			font-size: 1.2rem;
-			position: absolute;
-			bottom: 0;
-			width: 100%;
-			margin: 0;
-			padding: 0.2em;
-			text-align: center;
-			z-index: 10; // Keep it above .carousel-overlay
-		}
-		.carousel-badge {
-			//width: 0.834em;
-			//height: 0.834em;
-			//border-radius: 0.4em;
-			width: 0.8rem;
-			height: 0.8rem;
-			border-radius: 0.4rem;
-			border: 2px solid #fff;
-			display: inline-block;
-			transition: $carousel-badge-fade-time background;
+      i {
+        position: absolute;
+      }
+    }
+    .previous {
+      left: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.333),
+        rgba(0, 0, 0, 0)
+      );
+    }
+    .next {
+      right: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0.333)
+      );
 
-			&.active {
-				background: #fff;
-			}
-		}
-	}
+      i {
+        right: 0;
+      }
+    }
 
-	&.one-item {
-		.previous,
-		.next,
-		.carousel-badges {
-			display: none;
-		}
-		.center {
-			left: 0;
-			right: 0;
-		}
-	}
+    i {
+      display: block;
+      position: relative;
+      top: 50%;
+      margin-top: -0.5em;
+    }
+  }
 
-	.carousel-badges {
-		pointer-events: none;
-		.carousel-badges-bar {
-			pointer-events: auto;
-		}
-	}
-	.carousel-overlay {
-		pointer-events: none;
-		.button {
-			pointer-events: auto;
-		}
-	}
+  .carousel-badges {
+    $carousel-badge-fade-time: 0.5s;
 
+    .carousel-badges-bar {
+      font-size: 1.2rem;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      margin: 0;
+      padding: 0.2em;
+      text-align: center;
+      z-index: 10; // Keep it above .carousel-overlay
+    }
+    .carousel-badge {
+      //width: 0.834em;
+      //height: 0.834em;
+      //border-radius: 0.4em;
+      width: 0.8rem;
+      height: 0.8rem;
+      border-radius: 0.4rem;
+      border: 2px solid #fff;
+      display: inline-block;
+      transition: $carousel-badge-fade-time background;
+
+      &.active {
+        background: #fff;
+      }
+    }
+  }
+
+  &.one-item {
+    .previous,
+    .next,
+    .carousel-badges {
+      display: none;
+    }
+    .center {
+      left: 0;
+      right: 0;
+    }
+  }
+
+  .carousel-badges {
+    pointer-events: none;
+    .carousel-badges-bar {
+      pointer-events: auto;
+    }
+  }
+  .carousel-overlay {
+    pointer-events: none;
+    .button {
+      pointer-events: auto;
+    }
+  }
 }
-

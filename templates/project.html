@@ -1,11 +1,19 @@
-{{ template "header.html" . }}
-
-{{ with .Item }}
+{{ template "header.html" . }} {{ with .Item }}
 <main class="page">
-	<header>
-		<h1>{{ .Title }}</h1>
-	</header>
+  <header>
+    <h1>{{ .Name }}</h1>
+    <p class="authors">
+      By {{ andify .Authors }}
+    </p>
+    <div class="summary">
+      {{ html .Summary }}
+    </div>
+  </header>
+  {{ html .Content }}
+  <footer>
+    <p>
+      Published {{ date .Timestamp }} {{ if ne .Timestamp .Updated }} &bull; Updated {{ date .Updated }} {{ end }}
+    </p>
+  </footer>
 </main>
-{{ end }}
-
-{{ template "footer.html" . }}
+{{ end }} {{ template "footer.html" . }}

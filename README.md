@@ -39,8 +39,18 @@ git clone git@github.com:appventure-nush/appventure-website.git $ORG/appventure-
 cd $ORG/appventure-website
 # build CSS
 yarn && yarn grunt
+# format CSS and HTML
+yarn fmt
 # build and run website
 go get && go build && ./appventure-website -debug
 # build and run API
 cd api && ponzu build && ponzu run --port 8081
 ```
+
+When greeted by the init page in Ponzu (http://localhost:8081/admin/init), configure the following: 
+
+* Site Name: AppVenture
+* Domain: localhost
+* Admin Details:
+  * Email: website@appventure.nushigh.edu.sg
+  * Password: any test password
