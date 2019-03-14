@@ -10,14 +10,6 @@ RUN go get ./...
 RUN go get github.com/ponzu-cms/ponzu/...
 #RUN ponzu build -ldflags '-extldflags "-static"' -o /api
 RUN ponzu build
-RUN mv ponzu-server /ponzu-server
 
-
-FROM scratch
-
-EXPOSE 8080
-
-COPY --from=build /ponzu-server /ponzu-server
-
-ENTRYPOINT ["/ponzu-server"]
+ENTRYPOINT ["./ponzu-server"]
 CMD ["run", "--bind=0.0.0.0"]
