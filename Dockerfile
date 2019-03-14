@@ -26,4 +26,4 @@ EXPOSE 8080
 COPY --from=build /website /website
 COPY --from=grunt /src /
 
-ENTRYPOINT ["/website", "-debug"]
+ENTRYPOINT ["./website"]
