@@ -20,4 +20,4 @@ EXPOSE 8080
 COPY --from=build /ponzu-server /ponzu-server
 
 ENTRYPOINT ["/ponzu-server"]
-CMD ["run"]
+CMD ["run", "--bind=0.0.0.0"]
