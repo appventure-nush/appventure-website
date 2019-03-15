@@ -6,6 +6,8 @@ COPY . .
 RUN yarn install
 RUN node ./node_modules/grunt-cli/bin/grunt
 
+RUN yarn && yarn grunt
+RUN yarn fmt
 
 FROM golang:1.11-alpine as build
 
