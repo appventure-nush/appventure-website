@@ -16,15 +16,14 @@ ENV CGO_ENABLED=0
 ENV GOOS=linux
 ENV GOARCH=amd64
 RUN go get ./...
-#RUN go build -ldflags '-extldflags "-static"' -o /website
-RUN go build
+RUN go build -ldflags '-extldflags "-static"' -o /website
 
 
-#FROM scratch
+FROM scratch
 
 EXPOSE 8080
 
-#COPY --from=build /website /website
-#COPY --from=grunt /src /
+COPY --from=build /website /website
+COPY --from=grunt /src /
 
-ENTRYPOINT ["./appventure-website"]
+ENTRYPOINT ["/website"]
