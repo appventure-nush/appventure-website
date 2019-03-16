@@ -18,27 +18,12 @@ type API struct {
 // Errors
 var ErrorNotFound = errors.New("not found")
 
-// Fetching
-func (api *API) ALL() ([]content.App, error) {
+func (api *API) Apps() ([]content.App, error) {
 	data := make(map[string][]content.App)
 	params := url.Values{}
 	params.Add("type", "App")
 	err := api.get("/api/contents?"+params.Encode(), &data)
 	return data["data"], err
-}
-
-func (api *API) Apps() ([]content.App, error) {
-	all, err := api.ALL()
-	if err != nil {
-		return nil, err
-	}
-	var apps []content.App
-	for _, a := range all {
-		if !a.Flagged("project") {
-			apps = append(apps, a)
-		}
-	}
-	return apps, err
 }
 
 func (api *API) App(slug string) (content.App, error) {
@@ -49,41 +34,6 @@ func (api *API) App(slug string) (content.App, error) {
 	err := api.get("/api/content?"+params.Encode(), &data)
 	if len(data["data"]) < 1 {
 		return content.App{}, err
-	}
-	return data["data"][0], err
-}
-
-func (api *API) Projects() ([]content.App, error) {
-	all, err := api.ALL()
-	if err != nil {
-		return nil, err
-	}
-	var projects []content.App
-	for _, a := range all {
-		if a.Flagged("project") {
-			projects = append(projects, a)
-		}
-	}
-	return projects, err
-}
-
-func (api *API) Project(slug string) (content.App, error) {
-	data := make(map[string][]content.App)
-	params := url.Values{}
-	params.Add("type", "App")
-	params.Add("slug", slug)
-	err := api.get("/api/content?"+params.Encode(), &data)
-	if len(data["data"]) < 1 {
-		return content.App{}, err
-	}
-	return data["data"][0], err
-}
-
-func (api *API) ScreenshotByReference(ref string) (content.Screenshot, error) {
-	data := make(map[string][]content.Screenshot)
-	err := api.get(ref, &data)
-	if len(data["data"]) < 1 {
-		return content.Screenshot{}, err
 	}
 	return data["data"][0], err
 }
@@ -104,6 +54,15 @@ func (api *API) Project(slug string) (content.Project, error) {
 	err := api.get("/api/content?"+params.Encode(), &data)
 	if len(data["data"]) < 1 {
 		return content.Project{}, err
+	}
+	return data["data"][0], err
+}
+
+func (api *API) ScreenshotByReference(ref string) (content.Screenshot, error) {
+	data := make(map[string][]content.Screenshot)
+	err := api.get(ref, &data)
+	if len(data["data"]) < 1 {
+		return content.Screenshot{}, err
 	}
 	return data["data"][0], err
 }

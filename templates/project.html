@@ -6,7 +6,7 @@
 	<header>
 		<h1>{{ .Name }}</h1>
 		<p>
-			{{ range .Platforms }}#{{ . }} {{ end }}{{ range .Year }}#year-{{ . }} {{ end }}#{{ .Type }}
+			{{ range .Platforms }}#{{ . }} {{ end }}{{ range .Year }}#year-{{ . }} {{ end }}
 		</p>
 		<p class="authors">
 			{{ andify .Authors }}

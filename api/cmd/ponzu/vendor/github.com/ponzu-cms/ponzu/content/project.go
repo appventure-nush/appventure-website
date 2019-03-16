@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
+  "github.com/bosssauce/reference"
+
 	"github.com/ponzu-cms/ponzu/management/editor"
 	"github.com/ponzu-cms/ponzu/system/item"
 )
@@ -13,8 +15,26 @@ type Project struct {
 
 	Name    string   `json:"name"`
 	Authors []string `json:"authors"`
+  Year             []int    `json:"year"`
+  Platforms        []string `json:"platforms"`
 	Summary string   `json:"Summary"`
 	Content string   `json:"content"`
+  Screenshots      []string `json:"screenshots"`
+}
+
+var ProjectYear = map[string]string{
+	"1": "Year 1",
+	"2": "Year 2",
+	"3": "Year 3",
+	"4": "Year 4",
+	"5": "Year 5",
+	"6": "Year 6",
+}
+
+var ProjectPlatforms = map[string]string{
+	"mobile":  "Mobile",
+	"desktop": "Desktop",
+	"web":     "Web",
 }
 
 // MarshalEditor writes a buffer of html to edit a Project within the CMS
@@ -38,6 +58,11 @@ func (p *Project) MarshalEditor() ([]byte, error) {
 				"placeholder": "Enter each author here",
 			}),
 		},
+    editor.Field{
+			View: editor.Checkbox("Year", p, map[string]string{
+				"label": "Year in NUS High",
+			}, ProjectYear),
+		},
 		editor.Field{
 			View: editor.Richtext("Summary", p, map[string]string{
 				"label":       "Summary",
@@ -49,6 +74,19 @@ func (p *Project) MarshalEditor() ([]byte, error) {
 				"label":       "Content",
 				"placeholder": "Enter your project post here",
 			}),
+		},
+    editor.Field{
+			View: editor.Checkbox("Platforms", p, map[string]string{
+				"label": "Platforms Supported",
+			}, ProjectPlatforms),
+		},
+    editor.Field{
+			View: reference.SelectRepeater("Screenshots", p, map[string]string{
+				"label": "Screenshots",
+			},
+				"Screenshot",
+				`{{ .hint }} "{{ .description }}"`,
+			),
 		},
 	)
 
