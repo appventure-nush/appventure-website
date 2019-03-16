@@ -69,16 +69,16 @@ FilterBar.prototype._updateFilter = function() {
 };
 
 document.onclick = function(){
-	if(opened){
-		var filterbar = document.querySelector("div.filterbar");
-		var groups = filterbar.querySelectorAll(".group");
-		for (var j = 0; j < groups.length; j++) {
-			if(groups[j].classList.contains("opened")){
-				groups[j].classList.remove("opened");
-				opened = false;
-			}
-		}
-	}else{
-		opened = true;
-	}
+  if(opened){
+    var filterbar = document.querySelector("div.filterbar");
+    var groups = filterbar.querySelectorAll(".group");
+    for (var j = 0; j < groups.length; j++) {
+      if(groups[j].classList.contains("opened")){
+        groups[j].classList.remove("opened");
+        opened = false;
+      }
+    }
+  }else{
+    opened = true;
+  }
 };

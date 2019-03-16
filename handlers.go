@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	"appventure-website/api/content"
+	"github.com/appventure-nush/appventure-website/api/content"
 	"github.com/julienschmidt/httprouter"
 )
 
