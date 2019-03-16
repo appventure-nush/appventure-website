@@ -5,7 +5,7 @@ yarn-error.log
 yarn.lock
 
 assets/css/
-appventure-website
+appventure-website.exe
 
 /api/.gitattributes
 /api/.gitignore
@@ -16,6 +16,6 @@ appventure-website
 /api/docs
 /api/examples
 /api/ponzu-banner.png
-/api/ponzu-server
+/api/ponzu-server.exe
 /api/uploads
 /api/search
