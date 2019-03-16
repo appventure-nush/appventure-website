@@ -1,73 +1,124 @@
 $font-size-base: 1.6rem;
 $font-sizes: (
-	xsmall: 0.6em,
-	small: 0.8em,
-	subtext: 0.9em,
-	normal: 1em,
-	medium: 1.2em,
-	large: 1.4em,
-	h1: 2.2em,
-	h2: 1.8em,
-	h3: 1.4em,
-	h4: 1.2em,
-	h5: 1em,
-	h6: 1em
+  xsmall: 0.6em,
+  small: 0.8em,
+  subtext: 0.9em,
+  normal: 1em,
+  medium: 1.2em,
+  large: 1.4em,
+  h1: 2.2em,
+  h2: 1.8em,
+  h3: 1.4em,
+  h4: 1.2em,
+  h5: 1em,
+  h6: 1em,
 );
 
 @mixin font-size($type: normal) {
-	font-size: map-get($font-sizes, $type);
+  font-size: map-get($font-sizes, $type);
 }
 
 $font-families: (
-	default: ("Montserrat", "Helvetica Neue", "Helvetica", "sans-serif"),
-	brand: ("Montserrat", "Helvetica Neue", "Helvetica", "sans-serif"),
-	heading: ("Montserrat", "Helvetica Neue", "Helvetica", "sans-serif"),
-	mono: ("Roboto Mono", "Menlo", "Monaco", "monospace")
+  default: (
+    "Montserrat",
+    "Helvetica Neue",
+    "Helvetica",
+    "sans-serif",
+  ),
+  brand: (
+    "Montserrat",
+    "Helvetica Neue",
+    "Helvetica",
+    "sans-serif",
+  ),
+  heading: (
+    "Montserrat",
+    "Helvetica Neue",
+    "Helvetica",
+    "sans-serif",
+  ),
+  mono: (
+    "Roboto Mono",
+    "Menlo",
+    "Monaco",
+    "monospace",
+  ),
 );
 
 @mixin font-family($type: default) {
-	font-family: map-get($font-families, $type);
+  font-family: map-get($font-families, $type);
 }
 
 $font-types: (
-	brand: (style: normal, weight: 700),
-	default: (style: normal, weight: 500),
-	heading: (style: normal, weight: 700),
-	authors: (style: italic, weight: 500),
-	link: (style: inherit, weight: inherit),
-	bold: (style: inherit, weight: 700),
-	italic: (style: italic, weight: inherit),
-	bolditalic: (style: italic, weight: 700), // should not be used
-	blockquote: (style: italic, weight: inherit),
+  brand: (
+    style: normal,
+    weight: 700,
+  ),
+  default: (
+    style: normal,
+    weight: 500,
+  ),
+  heading: (
+    style: normal,
+    weight: 700,
+  ),
+  authors: (
+    style: italic,
+    weight: inherit,
+  ),
+  link: (
+    style: inherit,
+    weight: inherit,
+  ),
+  bold: (
+    style: inherit,
+    weight: 700,
+  ),
+  italic: (
+    style: italic,
+    weight: inherit,
+  ),
+  bolditalic: (
+    style: italic,
+    weight: 700,
+  ),
+  blockquote: (
+    style: italic,
+    weight: inherit,
+  ),
+  header: (
+    style: inherit,
+    weight: inherit,
+  ),
 );
 
 @mixin font-type($type: default) {
-	font-style: map-get(map-get($font-types, $type), style);
-	font-weight: map-get(map-get($font-types, $type), weight);
+  font-style: map-get(map-get($font-types, $type), style);
+  font-weight: map-get(map-get($font-types, $type), weight);
 }
 
 $line-heights: (
-	default: 1.2,
-	paragraph: 1.6,
-	code: 1.4,
-	heading: 1.4
+  default: 1.2,
+  paragraph: 1.6,
+  code: 1.4,
+  heading: 1.4,
 );
 
 @mixin line-height($type: default) {
-	line-height: map-get($line-heights, $type);
+  line-height: map-get($line-heights, $type);
 }
 
 $paragraphings: (
-	default: 0,
-	paragraph: $font-size-base * 1,
-	paragraph-small: $font-size-base * 0.4,
-	links: $font-size-base * 0.8,
-	heading: $font-size-base * 1,
-	gallery: $font-size-base * 1 - 0.5rem,
-	main: $font-size-base * 1,
+  default: 0,
+  paragraph: $font-size-base * 1,
+  paragraph-small: $font-size-base * 0.4,
+  links: $font-size-base * 0.8,
+  heading: $font-size-base * 1,
+  gallery: $font-size-base * 1 - 0.5rem,
+  main: $font-size-base * 1,
 );
 
 @mixin paragraphing($type: default) {
-	margin-top: map-get($paragraphings, $type);
-	margin-bottom: map-get($paragraphings, $type);
+  margin-top: map-get($paragraphings, $type);
+  margin-bottom: map-get($paragraphings, $type);
 }

@@ -1,0 +1,9 @@
+.projects {
+  .project {
+    margin: 2em 0;
+
+    .authors {
+      @include font-size(subtext);
+    }
+  }
+}

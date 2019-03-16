@@ -94,7 +94,7 @@ func (h *Handlers) projects(w http.ResponseWriter, rq *http.Request, ps httprout
 }
 
 func (h *Handlers) project(w http.ResponseWriter, rq *http.Request, ps httprouter.Params) {
-	project, err := h.api.App("app-" + ps.ByName("slug"))
+	project, err := h.api.Project("project-" + ps.ByName("slug"))
 	if err == ErrorNotFound {
 		log.Println(err)
 		h.tm.RenderError(w, http.StatusNotFound)
@@ -114,7 +114,7 @@ func (h *Handlers) project(w http.ResponseWriter, rq *http.Request, ps httproute
 	}
 	h.tm.Render(w, "project.html", Context{
 		Item: project,
-		Items:  screenshots,
+		Items: screenshots,
 	})
 }
 

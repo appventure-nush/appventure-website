@@ -1,8 +1,12 @@
 {{ template "header.html" . }}
 
 <main>
-	<h2>Apps</h2>
-	<p>Applications made by students, for both competitions and the school curriculum</p>
+	<header>
+		<h1>Apps</h1>
+		<p>
+			Applications made by students, for both competitions and the school curriculum
+		</p>
+	</header>
 	{{ template "filterbar.html" }}
 	<ul class="gallery">
 		{{ range .Items }}
@@ -14,10 +18,14 @@
 					<p>{{ andify .Authors }}</p>
 				</div>
 				<div class="cover">
-					<p>{{ html .Description }}</p>
+					{{ html .Description }}
 				</div>
 			</li>
 		</a>
+		{{ else }}
+		<div class="gallery-item center" style="width: 100%">
+			<h2>No apps published</h2>
+		</div>
 		{{ end }}
 	</ul>
 </main>

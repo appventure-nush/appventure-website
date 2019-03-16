@@ -1,61 +1,60 @@
-
 $gallery-spacing: 0.6rem;
 
 .featured {
-	list-style: none;
+  list-style: none;
 
-	.featured-item {
-		margin-top: 6rem;
-		margin-bottom: 6rem;
+  .featured-item {
+    margin-top: 6rem;
+    margin-bottom: 6rem;
 
-		&.reverse {
-			text-align: right;
-			flex-direction: row-reverse;
-		}
-	}
+    &.reverse {
+      text-align: right;
+      flex-direction: row-reverse;
+    }
+  }
 }
 
 .animate {
-	// reason: http://stackoverflow.com/a/17529003
-	&.from-left {
-		animation-duration: 1.2s;
-		animation-name: from-left;
-		animation-timing-function: ease-out;
-		animation-fill-mode: backwards;
-		animation-play-state: paused;
-	}
+  // reason: http://stackoverflow.com/a/17529003
+  &.from-left {
+    animation-duration: 1.2s;
+    animation-name: from-left;
+    animation-timing-function: ease-out;
+    animation-fill-mode: backwards;
+    animation-play-state: paused;
+  }
 
-	&.from-right {
-		animation-duration: 1.2s;
-		animation-name: from-right;
-		animation-timing-function: ease-out;
-		animation-fill-mode: backwards;
-		animation-play-state: paused;
-	}
+  &.from-right {
+    animation-duration: 1.2s;
+    animation-name: from-right;
+    animation-timing-function: ease-out;
+    animation-fill-mode: backwards;
+    animation-play-state: paused;
+  }
 
-	&.start {
-		animation-play-state: running;
-	}
+  &.start {
+    animation-play-state: running;
+  }
 }
 
 @keyframes from-left {
-	from {
-		transform: translateX(-320px);
-		opacity: 0;
-	}
-	to {
-		transform: translateX(0px);
-		opacity: 1;
-	}
+  from {
+    transform: translateX(-320px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
 }
 
 @keyframes from-right {
-	from {
-		transform: translateX(320px);
-		opacity: 0;
-	}
-	to {
-		transform: translateX(0px);
-		opacity: 1;
-	}
+  from {
+    transform: translateX(320px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
 }

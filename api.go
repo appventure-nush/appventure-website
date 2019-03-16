@@ -88,6 +88,26 @@ func (api *API) ScreenshotByReference(ref string) (content.Screenshot, error) {
 	return data["data"][0], err
 }
 
+func (api *API) Projects() ([]content.Project, error) {
+	data := make(map[string][]content.Project)
+	params := url.Values{}
+	params.Add("type", "Project")
+	err := api.get("/api/contents?"+params.Encode(), &data)
+	return data["data"], err
+}
+
+func (api *API) Project(slug string) (content.Project, error) {
+	data := make(map[string][]content.Project)
+	params := url.Values{}
+	params.Add("type", "Project")
+	params.Add("slug", slug)
+	err := api.get("/api/content?"+params.Encode(), &data)
+	if len(data["data"]) < 1 {
+		return content.Project{}, err
+	}
+	return data["data"][0], err
+}
+
 // Extended types
 
 type FeaturedApp struct {

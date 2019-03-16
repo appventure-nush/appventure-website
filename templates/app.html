@@ -1,7 +1,4 @@
-{{ template "header.html" . }}
-
-{{ $screenshots := .Items }}
-{{ with .Item }}
+{{ template "header.html" . }} {{ $screenshots := .Items }} {{ with .Item }}
 <main class="page columns">
 	<div class="column">
 		<div class="carousel fullscreen" data-start="0">
@@ -84,16 +81,19 @@
 {{/*
 <script src="/assets/js/popup.js"></script>
 <script>
-	document.addEventListener("DOMContentLoaded", function () {
-		var download = document.querySelector("#download");
-		var downloadurl = download.href;
-		download.href = "#java";
-		var popup = new Popup("java", '<div class="text"><h1>Requires Java</h1><p>Java is required to run this application. If the application does not run, <a href="https://www.java.com/verify/">verify that java is installed</a>. </p><p><a class="btn" href="' + downloadurl + '">Continue downloading JAR</a> <a class="btn light" href="https://www.java.com/download/">Get Java</a></p></div>', function () {
-
-		});
-	});
+  document.addEventListener("DOMContentLoaded", function() {
+    var download = document.querySelector("#download");
+    var downloadurl = download.href;
+    download.href = "#java";
+    var popup = new Popup(
+      "java",
+      '<div class="text"><h1>Requires Java</h1><p>Java is required to run this application. If the application does not run, <a href="https://www.java.com/verify/">verify that java is installed</a>. </p><p><a class="btn" href="' +
+        downloadurl +
+        '">Continue downloading JAR</a> <a class="btn light" href="https://www.java.com/download/">Get Java</a></p></div>',
+      function() {}
+    );
+  });
 </script>
 */}}
 {{ end }}
-
 {{ template "footer.html" . }}

@@ -8,64 +8,77 @@ main {
 		margin-top: 4rem;
 	}
 
-	.apps {
-		text-align: center;
-	}
+  header {
+    text-align: center;
+    @include font-type(header);
+    padding: 1em 3em;
+  }
 
-	.authors {
-		//@include font-size(medium);
-		@include font-type(authors);
-	}
+  footer {
+    text-align: right;
+    color: palette(text-blur);
+    @include font-size(subtext);
+  }
 
-	.achievement-header {
-		margin-bottom: 0;
-	}
+  .apps {
+    text-align: center;
+  }
 
-	.achievements ul {
-		margin-top: 0;
-		padding-left: 1em;
-		@include font-size(subtext);
+  .authors {
+    //@include font-size(medium);
+    @include font-type(authors);
+  }
 
-		&.plain {
-			padding-left: 0;
-			list-style: none;
-		}
-	}
+  .achievement-header {
+    margin-bottom: 0;
+  }
 
-	.content {
-		@extend p;
-		ul, ol {
-			padding-left: 1em;
-		}
-	}
+  .achievements ul {
+    margin-top: 0;
+    padding-left: 1em;
+    @include font-size(subtext);
 
-	.pull-right {
-		float: right;
-	}
-	.pull-left {
-		float: left;
-	}
+    &.plain {
+      padding-left: 0;
+      list-style: none;
+    }
+  }
 
-	.clearfix {
-		clear: both;
-	}
+  .content {
+    @extend p;
+    ul,
+    ol {
+      padding-left: 1em;
+    }
+  }
 
-	.w50 {
-		width: 50%;
-	}
-	.w30 {
-		width: 30%;
-	}
-	.w25 {
-		width: 25%;
-	}
-	.w23 {
-		width: 23%;
-	}
-	.w20 {
-		width: 20%;
-	}
-	.w15 {
-		width: 15%;
-	}
+  .pull-right {
+    float: right;
+  }
+  .pull-left {
+    float: left;
+  }
+
+  .clearfix {
+    clear: both;
+  }
+
+  .w50 {
+    width: 50%;
+  }
+  .w30 {
+    width: 30%;
+  }
+  .w25 {
+    width: 25%;
+  }
+  .w23 {
+    width: 23%;
+  }
+  .w20 {
+    width: 20%;
+  }
+  .w15 {
+    width: 15%;
+  }
 }

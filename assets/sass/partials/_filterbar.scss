@@ -11,92 +11,92 @@
 		position: relative;
 		margin-left: 1rem;
 
-		label {
-			@extend .btn;
-			padding-right: 1.6em;
-			min-width: 6em;
-			cursor: pointer;
+    label {
+      @extend .btn;
+      padding-right: 1.6em;
+      min-width: 6em;
+      cursor: pointer;
 
-			i {
-				position: absolute;
-				right: 0.5rem;
-				top: 0.7rem;
-			}
-		}
+      i {
+        position: absolute;
+        right: 0.5rem;
+        top: 0.7rem;
+      }
+    }
 
-		i {
-			display: none;
-		}
-		.icon-arrow_drop_down {
-			display: inline-block;
-		}
-		&.opened {
-			.icon-arrow_drop_up {
-				display: inline-block;
-			}
-			.icon-arrow_drop_down {
-				display: none;
-			}
-		}
-	}
+    i {
+      display: none;
+    }
+    .icon-arrow_drop_down {
+      display: inline-block;
+    }
+    &.opened {
+      .icon-arrow_drop_up {
+        display: inline-block;
+      }
+      .icon-arrow_drop_down {
+        display: none;
+      }
+    }
+  }
 
-	.tags {
-		display: block;
-		position: absolute;
-		top: 1.8em;
-		left: 0;
-		z-index: 100;
-		min-width: 100%;
+  .tags {
+    display: block;
+    position: absolute;
+    top: 1.8em;
+    left: 0;
+    z-index: 100;
+    min-width: 100%;
 
-		background: #fff;
-		box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-		border-radius: 0.4em;
-		overflow: hidden;
+    background: #fff;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    border-radius: 0.4em;
+    overflow: hidden;
 
-		.tag {
-			display: block;
-			padding: 0.4em;
-			line-height: 1.2;
-			white-space: nowrap;
-			cursor: pointer;
+    .tag {
+      display: block;
+      padding: 0.4em;
+      line-height: 1.2;
+      white-space: nowrap;
+      cursor: pointer;
 
-			* {
-				vertical-align: text-bottom;
-			}
-			i {
-				display: none;
-				font-size: 2.4rem;
-			}
-			span {
-				display: inline-block;
-				margin-bottom: 0.1em;
-			}
-			.icon-check_box_outline_blank {
-				display: inline-block;
-			}
-			&.checked {
-				.icon-check_box {
-					display: inline-block;
-				}
-				.icon-check_box_outline_blank {
-					display: none;
-				}
-			}
+      * {
+        vertical-align: text-bottom;
+      }
+      i {
+        display: none;
+        font-size: 2.4rem;
+      }
+      span {
+        display: inline-block;
+        margin-bottom: 0.1em;
+      }
+      .icon-check_box_outline_blank {
+        display: inline-block;
+      }
+      &.checked {
+        .icon-check_box {
+          display: inline-block;
+        }
+        .icon-check_box_outline_blank {
+          display: none;
+        }
+      }
 
-			&:hover {
-				background: $theme-color;
-				color: #fff;
-			}
-		}
-	}
+      &:hover {
+        background: $theme-color;
+        color: #fff;
+      }
+    }
+  }
 
-	.tags {
-		opacity: 0;
-		pointer-events: none;
-	}
+  .tags {
+    opacity: 0;
+    pointer-events: none;
+  }
 
-	.group.opened .tags {
-		opacity: 1;
-		pointer-events: all;
-	}
+  .group.opened .tags {
+    opacity: 1;
+    pointer-events: all;
+  }
 }

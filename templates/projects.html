@@ -1,25 +1,26 @@
 {{ template "header.html" . }}
 
-<main>
-	<h2>Projects</h2>
-	<p>Student made projects that improve the quality of life of those in school as well as the community</p>
-	{{template "filterbar.html"}}
-	<ul class="gallery">
-		{{ range .Items }}
-		<a href="/projects/{{ unslug .Slug }}">
-			<li class="gallery-item" data-filterable="tags" data-tags="{{ range .Platforms }}{{ . }},{{ end }}{{ range .Year }}{{ . }},{{ end }}{{ .Type }}">
-				<img class="icon" src="{{ size "128" .Icon }}" />
-				<div class="text">
-					<h6>{{ .Name }}</h6>
-					<p>{{ andify .Authors }}</p>
-				</div>
-				<div class="cover">
-					<p>{{ html .Description }}</p>
-				</div>
-			</li>
-		</a>
-		{{ end }}
-	</ul>
+<main class="page projects">
+	<header>
+		<h1>Projects</h1>
+		<p>
+			Student made projects that improve the quality of life of those in school as well as the community
+		</p>
+	</header>
+	<!-- Blog listing with excerpts here -->
+	{{ range .Items }}
+	<section class="project">
+		<h2><a href="/projects/{{ unslug .Slug }}">{{ .Name }}</a></h2>
+		<div class="summary">
+			{{ html .Summary }}
+		</div>
+		<p class="authors">By {{ andify .Authors }} &bull; <a href="/projects/{{ unslug .Slug }}">Read more &raquo;</a></p>
+	</section>
+	{{ else }}
+	<div class="project center">
+		<h2>No projects published</h2>
+	</div>
+	{{ end }}
 </main>
 
 <script src="/assets/js/filter.js"></script>

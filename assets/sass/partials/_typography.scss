@@ -1,97 +1,111 @@
-h1, h2, h3, h4, h5, h6 {
-	@include font-type(heading);
-	@include font-family(heading);
-	@include line-height(heading);
-	@include paragraphing(heading);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @include font-type(heading);
+  @include font-family(heading);
+  @include line-height(heading);
+  @include paragraphing(heading);
 }
 
 h1 {
-	@include font-size(h1);
+  @include font-size(h1);
 }
 
 h2 {
-	@include font-size(h2);
+  @include font-size(h2);
 }
 
 h3 {
-	@include font-size(h3);
+  @include font-size(h3);
 }
 
 h4 {
-	@include font-size(h4);
+  @include font-size(h4);
 }
 
 h5 {
-	@include font-size(h5);
+  @include font-size(h5);
 }
 
 h6 {
-	@include font-size(h6);
+  @include font-size(h6);
 }
 
-p, ol, ul {
-	@include font-size();
-	@include line-height(paragraph);
-	@include paragraphing(paragraph);
+p,
+ol,
+ul {
+  @include font-size();
+  @include line-height(paragraph);
+  @include paragraphing(paragraph);
 }
 ul {
-	list-style: disc;
+  list-style: disc;
 }
 ol {
-	list-style: decimal;
+  list-style: decimal;
 }
 
-code, pre, .hljs {
-	@include font-size();
-	@include line-height(code);
-	@include font-family(mono);
-	background-color: palette(code-background);
-	padding: 0.3em 0.45em;
-	overflow-x: auto;
+code,
+pre,
+.hljs {
+  @include font-size();
+  @include line-height(code);
+  @include font-family(mono);
+  background-color: palette(code-background);
+  padding: 0.3em 0.45em;
+  overflow-x: auto;
 }
-code, code.hljs {
-	display: inline;
+code,
+code.hljs {
+  display: inline;
 }
-pre, pre.hljs {
-	display: block;
-	@include paragraphing(paragraph);
+pre,
+pre.hljs {
+  display: block;
+  @include paragraphing(paragraph);
 }
 
 small {
-	@include font-size(small);
+  @include font-size(small);
 }
 
-sup, sub {
-	@include font-size(xsmall);
+sup,
+sub {
+  @include font-size(xsmall);
 }
 sup {
-	vertical-align: super;
+  vertical-align: super;
 }
 sub {
-	vertical-align: sub;
+  vertical-align: sub;
 }
 
-b, strong {
-	@include font-type(bold);
+b,
+strong {
+  @include font-type(bold);
 }
-i, em {
-	@include font-type(italic);
+i,
+em {
+  @include font-type(italic);
 }
 
 blockquote {
-	@include font-size(medium);
-	@include font-type(blockquote);
-	border-left: 6px solid palette(blockquote-bar);
-	padding-left: 0.6em;
-	padding-right: 0.6em;
+  @include font-size(medium);
+  @include font-type(blockquote);
+  border-left: 6px solid palette(blockquote-bar);
+  padding-left: 0.6em;
+  padding-right: 0.6em;
 }
 
 .picture {
-	max-width: 100%;
+  max-width: 100%;
 }
 
 .center {
-	text-align: center;
+  text-align: center;
 }
 
 .noselect {

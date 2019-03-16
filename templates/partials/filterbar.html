@@ -1,21 +1,21 @@
 <div class="filterbar">
-	<label>Filter by</label>
-	{{ range filterbar }}
-	<div class="group">
-		<label>
-			<span>{{ .Title }}</span>
-			<i class="icon-arrow_drop_down"></i>
-			<i class="icon-arrow_drop_up"></i>
-		</label>
-		<ul class="tags">
-			{{ range $Name, $Title := .Tags }}
-			<li class="tag" data-tag="{{ $Name }}">
-				<i class="icon-check_box"></i>
-				<i class="icon-check_box_outline_blank"></i>
-				<span>{{ $Title }}</span>
-			</li>
-			{{ end }}
-		</ul>
-	</div>
-	{{ end }}
+  <label>Filter by</label>
+  {{ range filterbar }}
+  <div class="group">
+    <label>
+      <span>{{ .Title }}</span>
+      <i class="icon-arrow_drop_down"></i>
+      <i class="icon-arrow_drop_up"></i>
+    </label>
+    <ul class="tags">
+      {{ range $Name, $Title := .Tags }}
+      <li class="tag" data-tag="{{ $Name }}">
+        <i class="icon-check_box"></i>
+        <i class="icon-check_box_outline_blank"></i>
+        <span>{{ $Title }}</span>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+  {{ end }}
 </div>
