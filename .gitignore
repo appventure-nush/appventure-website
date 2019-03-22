@@ -7,6 +7,8 @@ yarn.lock
 assets/css/
 appventure-website.exe
 
+/.idea/
+
 /api/.gitattributes
 /api/.gitignore
 /api/*.md

@@ -104,7 +104,7 @@ func (h *Handlers) project(w http.ResponseWriter, rq *http.Request, ps httproute
 		h.tm.RenderError(w, http.StatusInternalServerError)
 		return
 	}
-	screenshots := make([]content.Screenshot, 0)
+  screenshots := make([]content.Screenshot, 0)
 	for _, s := range project.Screenshots {
 		screenshot, err := h.api.ScreenshotByReference(s)
 		if err != nil {

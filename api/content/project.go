@@ -18,8 +18,8 @@ type Project struct {
   Year             []int    `json:"year"`
   Platforms        []string `json:"platforms"`
   Summary string   `json:"Summary"`
-  Content string   `json:"content"`
   Screenshots      []string `json:"screenshots"`
+  Content string   `json:"content"`
 }
 
 var ProjectYear = map[string]string{
