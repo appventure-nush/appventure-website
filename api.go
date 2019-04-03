@@ -6,7 +6,6 @@ import (
   "net/http"
   "net/url"
   "time"
-  "log"
 
   "github.com/appventure-nush/appventure-website/api/content"
 )
