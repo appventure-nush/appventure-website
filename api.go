@@ -6,6 +6,7 @@ import (
   "net/http"
   "net/url"
   "time"
+  "log"
 
   "github.com/appventure-nush/appventure-website/api/content"
 )
@@ -22,6 +23,7 @@ func (api *API) Apps() ([]content.App, error) {
   data := make(map[string][]content.App)
   params := url.Values{}
   params.Add("type", "App")
+  params.Add("count", "-1")
   err := api.get("/api/contents?"+params.Encode(), &data)
   return data["data"], err
 }
@@ -42,6 +44,7 @@ func (api *API) Projects() ([]content.Project, error) {
   data := make(map[string][]content.Project)
   params := url.Values{}
   params.Add("type", "Project")
+  params.Add("count", "-1")
   err := api.get("/api/contents?"+params.Encode(), &data)
   return data["data"], err
 }
