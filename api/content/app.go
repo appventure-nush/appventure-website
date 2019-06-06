@@ -30,6 +30,27 @@ type App struct {
 	Flags            []string `json:"flags"`
 }
 
+var AppPlatforms = map[string]string{
+	"mobile":  "Mobile",
+	"desktop": "Desktop",
+	"web":     "Web",
+}
+
+var AppYear = map[string]string{
+	"1": "Year 1",
+	"2": "Year 2",
+	"3": "Year 3",
+	"4": "Year 4",
+	"5": "Year 5",
+	"6": "Year 6",
+}
+var AppType = map[string]string{
+	"cs module":   "CS Module",
+	"competition": "Competition",
+	"by request":  "By Request",
+	"personal":    "Personal",
+}
+
 // Helpers
 
 func (a *App) Flagged(name string) bool {
@@ -83,33 +104,17 @@ func (a *App) MarshalEditor() ([]byte, error) {
 		editor.Field{
 			View: editor.Checkbox("Platforms", a, map[string]string{
 				"label": "Platforms Supported",
-			}, map[string]string{
-      	"Mobile":  "Mobile",
-      	"Desktop": "Desktop",
-      	"Web":     "Web",
-      }),
+			}, AppPlatforms),
 		},
 		editor.Field{
 			View: editor.Checkbox("Year", a, map[string]string{
 				"label": "Year in NUS High",
-			}, map[string]string{
-      	"Year 1": "Year 1",
-      	"Year 2": "Year 2",
-      	"Year 3": "Year 3",
-      	"Year 4": "Year 4",
-      	"Year 5": "Year 5",
-      	"Year 6": "Year 6",
-      }),
+			}, AppYear),
 		},
 		editor.Field{
 			View: editor.Select("Type", a, map[string]string{
 				"label": "Type",
-			}, map[string]string{
-      	"CS Module":   "CS Module",
-      	"Competition": "Competition",
-      	"By Request":  "By Request",
-      	"Personal":    "Personal",
-      }),
+			}, AppType),
 		},
 		editor.Field{
 			View: editor.Input("PlaystorePackage", a, map[string]string{
