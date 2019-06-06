@@ -18,7 +18,7 @@ type App struct {
 	Authors          []string `json:"authors"`
 	Achievements     string   `json:"achievements"`
 	Platforms        []string `json:"platforms"`
-	Year             []string `json:"year"`
+	Year             []int `json:"year"`
 	Type             string   `json:"type"`
 	PlaystorePackage string   `json:"playstore_package"`
 	AppstoreUrl      string   `json:"appstore_url"`
