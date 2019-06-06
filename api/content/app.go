@@ -18,7 +18,7 @@ type App struct {
 	Authors          []string `json:"authors"`
 	Achievements     string   `json:"achievements"`
 	Platforms        []string `json:"platforms"`
-	Year             []int    `json:"year"`
+	Year             []string `json:"year"`
 	Type             string   `json:"type"`
 	PlaystorePackage string   `json:"playstore_package"`
 	AppstoreUrl      string   `json:"appstore_url"`
@@ -39,29 +39,6 @@ func (a *App) Flagged(name string) bool {
 		}
 	}
 	return false
-}
-
-// Maps
-
-var AppPlatforms = map[string]string{
-	"mobile":  "Mobile",
-	"desktop": "Desktop",
-	"web":     "Web",
-}
-
-var AppYear = map[string]string{
-	"1": "Year 1",
-	"2": "Year 2",
-	"3": "Year 3",
-	"4": "Year 4",
-	"5": "Year 5",
-	"6": "Year 6",
-}
-var AppType = map[string]string{
-	"cs module":   "CS Module",
-	"competition": "Competition",
-	"by request":  "By Request",
-	"personal":    "Personal",
 }
 
 // MarshalEditor writes a buffer of html to edit a App within the CMS
@@ -106,17 +83,33 @@ func (a *App) MarshalEditor() ([]byte, error) {
 		editor.Field{
 			View: editor.Checkbox("Platforms", a, map[string]string{
 				"label": "Platforms Supported",
-			}, AppPlatforms),
+			}, map[string]string{
+      	"Mobile":  "Mobile",
+      	"Desktop": "Desktop",
+      	"Web":     "Web",
+      }),
 		},
 		editor.Field{
 			View: editor.Checkbox("Year", a, map[string]string{
 				"label": "Year in NUS High",
-			}, AppYear),
+			}, map[string]string{
+      	"Year 1": "Year 1",
+      	"Year 2": "Year 2",
+      	"Year 3": "Year 3",
+      	"Year 4": "Year 4",
+      	"Year 5": "Year 5",
+      	"Year 6": "Year 6",
+      }),
 		},
 		editor.Field{
 			View: editor.Select("Type", a, map[string]string{
 				"label": "Type",
-			}, AppType),
+			}, map[string]string{
+      	"CS Module":   "CS Module",
+      	"Competition": "Competition",
+      	"By Request":  "By Request",
+      	"Personal":    "Personal",
+      }),
 		},
 		editor.Field{
 			View: editor.Input("PlaystorePackage", a, map[string]string{

@@ -8,29 +8,36 @@
   img,
   svg {
     position: absolute;
-    bottom: 0%;
     right: 0;
     height: 45rem;
     margin-right: -2rem;
-    bottom: 2%;
+    bottom: 6%;
   }
 
   //.mask { // Fade image on the left.
   //	background: linear-gradient(90deg, $theme-color, rgba($theme-color, 0.5), rgba($theme-color, 0), rgba($theme-color, 0));
   //}
 
+  .btn.fa {
+    padding: 10px;
+    font-size: 26px;
+    width: 56px;
+    text-align: center;
+    margin: 0px 10px 0px 0px;
+    border-radius: 50%;
+  }
+
   .text {
-    position: relative;
-    left: 0;
-    top: 0;
-    width: 60%;
-    padding: 4rem 0 24rem 0;
-    margin: 0 2rem;
+    padding: 4rem 0 4rem 0;
     @include font-size(medium);
     z-index: 2;
-    .links {
+    .links{
       margin: 0.5em 0;
     }
+  }
+
+  .row {
+    margin: 10em 0 0 0;
   }
 }
 
