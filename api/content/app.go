@@ -36,6 +36,15 @@ var AppPlatforms = map[string]string{
 	"web":     "Web",
 }
 
+var AppYear =  map[string]string{
+  "1": "Year 1",
+  "2": "Year 2",
+  "3": "Year 3",
+  "4": "Year 4",
+  "5": "Year 5",
+  "6": "Year 6",
+}
+
 var AppType = map[string]string{
 	"cs module":   "CS Module",
 	"competition": "Competition",
@@ -90,14 +99,7 @@ func (a *App) MarshalEditor() ([]byte, error) {
     editor.Field{
 			View: editor.Checkbox("Year", a, map[string]string{
 				"label": "Year in NUS High",
-			}, map[string]string{
-      	"1": "Year 1",
-      	"2": "Year 2",
-      	"3": "Year 3",
-      	"4": "Year 4",
-      	"5": "Year 5",
-      	"6": "Year 6",
-      }),
+			}, AppYear),
 		},
 		editor.Field{
 			View: editor.Richtext("Achievements", a, map[string]string{
