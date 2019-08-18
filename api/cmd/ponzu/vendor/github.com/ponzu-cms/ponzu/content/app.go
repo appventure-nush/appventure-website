@@ -18,7 +18,7 @@ type App struct {
 	Authors          []string `json:"authors"`
 	Achievements     string   `json:"achievements"`
 	Platforms        []string `json:"platforms"`
-	Year             []string `json:"year"`
+	Year             []int    `json:"year"`
 	Type             string   `json:"type"`
 	PlaystorePackage string   `json:"playstore_package"`
 	AppstoreUrl      string   `json:"appstore_url"`
@@ -28,6 +28,19 @@ type App struct {
 	Screenshots      []string `json:"screenshots"`
 	Content          string   `json:"content"`
 	Flags            []string `json:"flags"`
+}
+
+var AppPlatforms = map[string]string{
+	"mobile":  "Mobile",
+	"desktop": "Desktop",
+	"web":     "Web",
+}
+
+var AppType = map[string]string{
+	"cs module":   "CS Module",
+	"competition": "Competition",
+	"by request":  "By Request",
+	"personal":    "Personal",
 }
 
 // Helpers
@@ -74,6 +87,18 @@ func (a *App) MarshalEditor() ([]byte, error) {
 				"placeholder": "Enter each author here",
 			}),
 		},
+    editor.Field{
+			View: editor.Checkbox("Year", a, map[string]string{
+				"label": "Year in NUS High",
+			}, map[string]string{
+      	"1": "Year 1",
+      	"2": "Year 2",
+      	"3": "Year 3",
+      	"4": "Year 4",
+      	"5": "Year 5",
+      	"6": "Year 6",
+      }),
+		},
 		editor.Field{
 			View: editor.Richtext("Achievements", a, map[string]string{
 				"label":       "Achievements",
@@ -83,33 +108,12 @@ func (a *App) MarshalEditor() ([]byte, error) {
 		editor.Field{
 			View: editor.Checkbox("Platforms", a, map[string]string{
 				"label": "Platforms Supported",
-			}, map[string]string{
-      	"Mobile":  "Mobile",
-      	"Desktop": "Desktop",
-      	"Web":     "Web",
-      }),
-		},
-		editor.Field{
-			View: editor.Checkbox("Year", a, map[string]string{
-				"label": "Year in NUS High",
-			}, map[string]string{
-      	"Year 1": "Year 1",
-      	"Year 2": "Year 2",
-      	"Year 3": "Year 3",
-      	"Year 4": "Year 4",
-      	"Year 5": "Year 5",
-      	"Year 6": "Year 6",
-      }),
+			}, AppPlatforms),
 		},
 		editor.Field{
 			View: editor.Select("Type", a, map[string]string{
 				"label": "Type",
-			}, map[string]string{
-      	"CS Module":   "CS Module",
-      	"Competition": "Competition",
-      	"By Request":  "By Request",
-      	"Personal":    "Personal",
-      }),
+			}, AppType),
 		},
 		editor.Field{
 			View: editor.Input("PlaystorePackage", a, map[string]string{

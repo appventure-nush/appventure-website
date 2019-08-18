@@ -13,28 +13,14 @@ import (
 type Project struct {
   item.Item
 
-  Name    string   `json:"name"`
-  Authors []string `json:"authors"`
+  Name             string   `json:"name"`
+  Authors          []string `json:"authors"`
   Year             []int    `json:"year"`
   Platforms        []string `json:"platforms"`
-  Summary string   `json:"Summary"`
+  SummaryASD       string   `json:"Summary"`
+  Displayimage     string   `json:"displayimage"`
   Screenshots      []string `json:"screenshots"`
-  Content string   `json:"content"`
-}
-
-var ProjectYear = map[string]string{
-  "1": "Year 1",
-  "2": "Year 2",
-  "3": "Year 3",
-  "4": "Year 4",
-  "5": "Year 5",
-  "6": "Year 6",
-}
-
-var ProjectPlatforms = map[string]string{
-  "mobile":  "Mobile",
-  "desktop": "Desktop",
-  "web":     "Web",
+  Content          string   `json:"content"`
 }
 
 // MarshalEditor writes a buffer of html to edit a Project within the CMS
@@ -61,10 +47,17 @@ func (p *Project) MarshalEditor() ([]byte, error) {
     editor.Field{
       View: editor.Checkbox("Year", p, map[string]string{
         "label": "Year in NUS High",
-      }, ProjectYear),
+      }, map[string]string{
+        "1": "Year 1",
+        "2": "Year 2",
+        "3": "Year 3",
+        "4": "Year 4",
+        "5": "Year 5",
+        "6": "Year 6",
+      }),
     },
     editor.Field{
-      View: editor.Richtext("Summary", p, map[string]string{
+      View: editor.Richtext("SummaryASD", p, map[string]string{
         "label":       "Summary",
         "placeholder": "Enter your project summary here",
       }),
@@ -78,8 +71,18 @@ func (p *Project) MarshalEditor() ([]byte, error) {
     editor.Field{
       View: editor.Checkbox("Platforms", p, map[string]string{
         "label": "Platforms Supported",
-      }, ProjectPlatforms),
+      }, map[string]string{
+        "mobile":  "Mobile",
+        "desktop": "Desktop",
+        "web":     "Web",
+      }),
     },
+    editor.Field{
+			View: editor.File("Displayimage", p, map[string]string{
+				"label":       "Display Image",
+				"placeholder": "Upload display image",
+			}),
+		},
     editor.Field{
       View: reference.SelectRepeater("Screenshots", p, map[string]string{
         "label": "Screenshots",

@@ -17,6 +17,24 @@ import (
 	"golang.org/x/text/unicode/norm"
 )
 
+var rxList map[*regexp.Regexp][]byte
+
+func init() {
+	// Compile regex once to use in stringToSlug().
+	// We store the compiled regex as the key
+	// and assign the replacement as the map's value.
+	rxList = map[*regexp.Regexp][]byte{
+		regexp.MustCompile("`[-]+`"):                                                                         []byte("-"),
+		regexp.MustCompile("[[:space:]]"):                                                                    []byte("-"),
+		regexp.MustCompile("[[:blank:]]"):                                                                    []byte(""),
+		regexp.MustCompile("`[^a-z0-9]`i"):                                                                   []byte("-"),
+		regexp.MustCompile("[!/:-@[-`{-~]"):                                                                  []byte(""),
+		regexp.MustCompile("/[^\x20-\x7F]/"):                                                                 []byte(""),
+		regexp.MustCompile("`&(amp;)?#?[a-z0-9]+;`i"):                                                        []byte("-"),
+		regexp.MustCompile("`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig|quot|rsquo);`i"): []byte("\\1"),
+	}
+}
+
 // Sluggable makes a struct locatable by URL with it's own path.
 // As an Item implementing Sluggable, slugs may overlap. If this is an issue,
 // make your content struct (or one which embeds Item) implement Sluggable
@@ -47,6 +65,9 @@ type Sortable interface {
 // to the different lifecycles/events a struct may encounter. Item implements
 // Hookable with no-ops so our user can override only whichever ones necessary.
 type Hookable interface {
+	BeforeAPIResponse(http.ResponseWriter, *http.Request, []byte) ([]byte, error)
+	AfterAPIResponse(http.ResponseWriter, *http.Request, []byte) error
+
 	BeforeAPICreate(http.ResponseWriter, *http.Request) error
 	AfterAPICreate(http.ResponseWriter, *http.Request) error
 
@@ -157,6 +178,16 @@ func (i Item) UniqueID() uuid.UUID {
 // partially implements the Identifiable interface
 func (i Item) String() string {
 	return fmt.Sprintf("Item ID: %s", i.UniqueID())
+}
+
+// BeforeAPIResponse is a no-op to ensure structs which embed Item implement Hookable
+func (i Item) BeforeAPIResponse(res http.ResponseWriter, req *http.Request, data []byte) ([]byte, error) {
+	return data, nil
+}
+
+// AfterAPIResponse is a no-op to ensure structs which embed Item implement Hookable
+func (i Item) AfterAPIResponse(res http.ResponseWriter, req *http.Request, data []byte) error {
+	return nil
 }
 
 // BeforeAPICreate is a no-op to ensure structs which embed Item implement Hookable
@@ -316,31 +347,10 @@ func isMn(r rune) bool {
 func stringToSlug(s string) (string, error) {
 	src := []byte(strings.ToLower(s))
 
-	// convert all spaces to dash
-	rx := regexp.MustCompile("[[:space:]]")
-	src = rx.ReplaceAll(src, []byte("-"))
-
-	// remove all blanks such as tab
-	rx = regexp.MustCompile("[[:blank:]]")
-	src = rx.ReplaceAll(src, []byte(""))
-
-	rx = regexp.MustCompile("[!/:-@[-`{-~]")
-	src = rx.ReplaceAll(src, []byte(""))
-
-	rx = regexp.MustCompile("/[^\x20-\x7F]/")
-	src = rx.ReplaceAll(src, []byte(""))
-
-	rx = regexp.MustCompile("`&(amp;)?#?[a-z0-9]+;`i")
-	src = rx.ReplaceAll(src, []byte("-"))
-
-	rx = regexp.MustCompile("`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig|quot|rsquo);`i")
-	src = rx.ReplaceAll(src, []byte("\\1"))
-
-	rx = regexp.MustCompile("`[^a-z0-9]`i")
-	src = rx.ReplaceAll(src, []byte("-"))
-
-	rx = regexp.MustCompile("`[-]+`")
-	src = rx.ReplaceAll(src, []byte("-"))
+	// Range over compiled regex and replacements from init().
+	for rx := range rxList {
+		src = rx.ReplaceAll(src, rxList[rx])
+	}
 
 	str := strings.Replace(string(src), "'", "", -1)
 	str = strings.Replace(str, `"`, "", -1)

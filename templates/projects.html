@@ -7,28 +7,22 @@
 			Student made projects that improve the quality of life of those in school as well as the community
 		</p>
 	</header>
-	<!-- Blog listing with excerpts here -->
+	<p>{{ printf "%#v" . }}</p>
 	{{ range .Items }}
-	<section class="project">
-		<h2><a href="/projects/{{ unslug .Slug }}">{{ .Name }}</a></h2>
-		<div class="summary">
-			{{ html .Summary }}
+	<a class="project" href="/projects/{{ unslug .Slug }}">
+		<img src="{{ size "128" .Displayimage }}" />
+		<div>
+			<h2>{{ .Name }}</h2>
+			<div class="summary">
+				{{ html .SummaryASD }}
+			</div>
+			<p class="authors">By {{ andify .Authors }}</p>
 		</div>
-		<p class="authors">By {{ andify .Authors }} &bull; <a href="/projects/{{ unslug .Slug }}">Read more &raquo;</a></p>
-	</section>
+	</a>
 	{{ else }}
 	<div class="project center">
 		<h2>No projects published</h2>
 	</div>
 	{{ end }}
 </main>
-
-<script src="/assets/js/filter.js"></script>
-<script src="/assets/js/filterbar.js"></script>
-<script>
-	document.addEventListener("DOMContentLoaded", function() {
-		var fb = new FilterBar(".filterbar", ".gallery");
-	});
-</script>
-
 {{ template "footer.html" . }}
