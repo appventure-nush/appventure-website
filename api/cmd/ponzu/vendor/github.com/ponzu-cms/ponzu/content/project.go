@@ -17,7 +17,7 @@ type Project struct {
   Authors          []string `json:"authors"`
   Year             []int    `json:"year"`
   Platforms        []string `json:"platforms"`
-  SummaryASD          string   `json:"Summary"`
+  Summary          string `json:"summary"`
   Displayimage     string   `json:"displayimage"`
   Screenshots      []string `json:"screenshots"`
   Content          string   `json:"content"`
